@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.env
+mf_analytics_pipeline/
+mf_analytics_pipeline.zip
+data/processed/

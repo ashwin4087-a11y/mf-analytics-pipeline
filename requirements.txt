@@ -1,0 +1,10 @@
+pandas
+numpy
+requests
+pyarrow
+matplotlib
+seaborn
+plotly
+sqlalchemy
+scipy
+jupyter
