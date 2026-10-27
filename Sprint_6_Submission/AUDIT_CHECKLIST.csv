@@ -1,0 +1,14 @@
+Requirement,Expected File/Path,Actual File/Path,Status,Validation Method & Result,Remaining Action
+Module 10 - KMeans Clustering Pipeline,src/analytics/clustering.py,Sprint_6_Submission/Source_Code/analytics/clustering.py,VERIFIED COMPLETE,Executed clustering.py; StandardScaler + KMeans(k=5) evaluated on 5 core features,None
+Module 10 - Cluster Labels Table,output/cluster_labels.csv,Sprint_6_Submission/Outputs/cluster_labels.csv,VERIFIED COMPLETE,Verified 100 companies assigned to labeled clusters (High Margin High Growth Leveraged etc.),None
+Module 10 - Elbow Optimization Plot,reports/elbow_plot.png,Sprint_6_Submission/Reports/elbow_plot.png,VERIFIED COMPLETE,Verified inertia curve generated for k=1..9; clear inflection at k=5,None
+Module 10 - Feature Correlation Heatmap,reports/correlation_heatmap.png,Sprint_6_Submission/Reports/correlation_heatmap.png,VERIFIED COMPLETE,Verified correlation matrix heatmap across ROE DE Growth OPM FCF,None
+Module 10 - Outlier Detection Report,output/outlier_report.csv,Sprint_6_Submission/Outputs/outlier_report.csv,VERIFIED COMPLETE,Verified statistical outliers (|z-score| > 3 against sector peers) logged,None
+Module 10 - Portfolio Cluster Stats,output/portfolio_stats.csv,Sprint_6_Submission/Outputs/portfolio_stats.csv,VERIFIED COMPLETE,Verified 5 cluster profiles with mean and median statistics for each feature,None
+Module 11 - FastAPI REST Server,src/api/main.py,Sprint_6_Submission/Source_Code/api/main.py,VERIFIED COMPLETE,Verified all 16 endpoints return valid JSON/binary streams with response timing headers,None
+Module 11 - OpenAPI Specification,docs/openapi.json,Sprint_6_Submission/Docs/openapi.json,VERIFIED COMPLETE,Exported valid OpenAPI 3.1.0 schema document (16.3 KB),None
+Module 11 - Postman Collection,docs/postman_collection.json,Sprint_6_Submission/Docs/postman_collection.json,VERIFIED COMPLETE,Exported Postman Collection v2.1 with sample parameters for all 16 routes,None
+Module 12 - Automated Test Suite,tests/,Sprint_6_Submission/Source_Code/tests/,VERIFIED COMPLETE,Executed pytest test suite; 130 / 130 tests pass with zero failures (target was 60+),None
+Module 12 - HTML Test Report,reports/pytest_report.html,Sprint_6_Submission/Reports/pytest_report.html,VERIFIED COMPLETE,Self-contained HTML test report generated with runtime breakdown and pass counts,None
+Module 13 - Analyst Guide Documentation,docs/analyst_guide.pdf,Sprint_6_Submission/Docs/analyst_guide.pdf,VERIFIED COMPLETE,10-topic PDF guide for screener dashboard clustering and API usage,None
+Module 13 - Acceptance Checklist Document,docs/acceptance_checklist.pdf,Sprint_6_Submission/Docs/acceptance_checklist.pdf,VERIFIED COMPLETE,Comprehensive audit checklist covering 17 exit checkpoints,None

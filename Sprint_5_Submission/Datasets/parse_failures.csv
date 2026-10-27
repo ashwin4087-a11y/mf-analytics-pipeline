@@ -1,0 +1,16 @@
+company_id,metric_type,raw_text
+SBILIFE,Compounded Sales Growth,TTM:            43%
+SBILIFE,Compounded Profit Growth,TTM:                 18%
+SBILIFE,Return on Equity,Last Year:      12%
+TCS,Compounded Sales Growth,TTM:            5%
+TCS,Compounded Profit Growth,TTM:                 8%
+TCS,Return on Equity,Last Year:       52%
+WIPRO,Compounded Sales Growth,TTM:           -3%
+WIPRO,Compounded Profit Growth,TTM:                 1%
+WIPRO,Return on Equity,Last Year:       14%
+HDFCBANK,Compounded Sales Growth,TTM:            47%
+HDFCBANK,Compounded Profit Growth,TTM:                27%
+HDFCBANK,Return on Equity,Last Year:    17%
+INFY,Compounded Sales Growth,TTM:            3%
+INFY,Compounded Profit Growth,TTM:                 8%
+INFY,Return on Equity,Last Year:     32%

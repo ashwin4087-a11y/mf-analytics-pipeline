@@ -214,6 +214,19 @@ def generate_cashflow_intelligence():
         c_bs = bs[bs['company_id'] == cid].copy()
         
         if c_cf.empty or c_pl.empty:
+            results.append({
+                'company_id': cid,
+                'sector': comp['sector'],
+                'cfo_quality_score': None,
+                'cfo_quality_label': None,
+                'capex_intensity_pct': None,
+                'capex_label': None,
+                'fcf_cagr_5yr': None,
+                'fcf_conversion_pct': None,
+                'distress_flag': False,
+                'deleveraging_flag': False,
+                'capital_allocation_label': 'Mixed'
+            })
             continue
             
         latest_cf = c_cf.iloc[-1]

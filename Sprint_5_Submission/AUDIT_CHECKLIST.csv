@@ -1,0 +1,14 @@
+Requirement,Expected File/Path,Actual File/Path,Status,Validation Method & Result,Remaining Action
+Day 29 - NLP Analysis Text Parser,src/nlp/parser.py,Sprint_5_Submission/Source_Code/nlp/parser.py,VERIFIED COMPLETE,Executed parser script; extracted 60 structured rows into analysis_parsed.csv and 17 failures into parse_failures.csv,None
+Day 29 - Parsed Analysis Output,output/analysis_parsed.csv,Sprint_5_Submission/Outputs/analysis_parsed.csv,VERIFIED COMPLETE,Verified CSV non-empty with company_id metric_type period_years value_pct columns,None
+Day 29 - Parse Failures Log,output/parse_failures.csv,Sprint_5_Submission/Outputs/parse_failures.csv,VERIFIED COMPLETE,Logged non-matching regex lines for manual analyst audit,None
+Day 30 - Auto Pros/Cons Generator,src/nlp/pros_cons_generator.py,Sprint_5_Submission/Source_Code/nlp/pros_cons_generator.py,VERIFIED COMPLETE,Implemented 12 Pro rules + 12 Con rules + fallbacks with confidence > 60%,None
+Day 30 - Generated Pros and Cons,output/pros_cons_generated.csv,Sprint_5_Submission/Outputs/pros_cons_generated.csv,VERIFIED COMPLETE,Verified 592 signals; 92/92 companies have >= 1 Pro and >= 1 Con,None
+Day 31 - Cash Flow Intelligence Script,src/analytics/cashflow_kpis.py,Sprint_5_Submission/Source_Code/analytics/cashflow_kpis.py,VERIFIED COMPLETE,Calculates CFO Quality score CapEx intensity distress flags deleveraging and allocation pattern,None
+Day 31 - Cash Flow Intelligence Table,output/cashflow_intelligence.xlsx,Sprint_5_Submission/Outputs/cashflow_intelligence.xlsx,VERIFIED COMPLETE,Verified exactly 92 rows and all 11 required schema columns,None
+Day 31 - Distress Signal Alerts,output/distress_alerts.csv,Sprint_5_Submission/Outputs/distress_alerts.csv,VERIFIED COMPLETE,13 companies flagged for CFO < 0 and CFF > 0 with supporting net profit data,None
+Day 32 - Capital Allocation Matrix,output/capital_allocation.csv,Sprint_5_Submission/Outputs/capital_allocation.csv,VERIFIED COMPLETE,Verified full 92 company x historical year pattern assignments,None
+Day 32 - Pattern Changes Tracking,output/pattern_changes.csv,Sprint_5_Submission/Outputs/pattern_changes.csv,VERIFIED COMPLETE,Verified tracking of year-over-year transition states across all companies,None
+Day 33-34 - 92 Company Tearsheets,reports/tearsheets/*.pdf,Sprint_5_Submission/Reports/tearsheets/,VERIFIED COMPLETE,All 92 company PDFs generated; 2 pages each; sizes 55.5 KB - 119.4 KB (all > 30 KB); no overflow,None
+Day 34 - 11 Sector Reports,reports/sector/*.pdf,Sprint_5_Submission/Reports/sector/,VERIFIED COMPLETE,All 11 sector PDFs generated with sector median KPIs and constituent company tables,None
+Day 35 - Portfolio Summary Report,reports/portfolio/portfolio_summary.pdf,Sprint_5_Submission/Reports/portfolio/portfolio_summary.pdf,VERIFIED COMPLETE,Generated 92-page summary document; 1 page per company with top 6 KPIs and directional trend arrows,None

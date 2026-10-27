@@ -136,15 +136,47 @@ def get_company_tearsheet(ticker: str):
     return FileResponse(path, media_type="application/pdf", filename=f"{ticker}_Tearsheet.pdf")
 
 @app.get("/api/v1/screener")
-def get_screener(db: sqlite3.Connection = Depends(get_db)):
-    # Return latest financial ratios for screener
+def get_screener(
+    min_roe: Optional[float] = None,
+    max_de: Optional[float] = None,
+    sector: Optional[str] = None,
+    min_cagr: Optional[float] = None,
+    db: sqlite3.Connection = Depends(get_db)
+):
     query = """
-    SELECT company_id as ticker, return_on_equity_pct as roe, debt_to_equity as de, 
-           free_cash_flow_cr as fcf, composite_quality_score
-    FROM financial_ratios 
-    WHERE year = (SELECT MAX(year) FROM financial_ratios)
+    WITH LatestYear AS (
+        SELECT company_id, MAX(year) as max_year
+        FROM financial_ratios
+        GROUP BY company_id
+    )
+    SELECT r.company_id as ticker, 
+           r.return_on_equity_pct as roe, 
+           r.debt_to_equity as de, 
+           r.free_cash_flow_cr as fcf, 
+           r.composite_quality_score,
+           r.revenue_cagr_5yr as cagr,
+           s.broad_sector as sector
+    FROM financial_ratios r
+    JOIN LatestYear ly ON r.company_id = ly.company_id AND r.year = ly.max_year
+    LEFT JOIN sectors s ON r.company_id = s.company_id
+    WHERE 1=1
     """
-    cursor = db.execute(query)
+    params = []
+    if min_roe is not None:
+        query += " AND r.return_on_equity_pct >= ?"
+        params.append(min_roe)
+    if max_de is not None:
+        query += " AND r.debt_to_equity <= ?"
+        params.append(max_de)
+    if min_cagr is not None:
+        query += " AND r.revenue_cagr_5yr >= ?"
+        params.append(min_cagr)
+    if sector is not None:
+        query += " AND s.broad_sector = ?"
+        params.append(sector)
+        
+    query += " ORDER BY r.composite_quality_score DESC"
+    cursor = db.execute(query, params)
     return [dict(row) for row in cursor.fetchall()]
 
 @app.get("/api/v1/sectors")
@@ -167,25 +199,26 @@ def get_peer_group(group_name: str, db: sqlite3.Connection = Depends(get_db)):
 
 @app.get("/api/v1/companies/{ticker}/peers/compare")
 def get_company_peers_compare(ticker: str, db: sqlite3.Connection = Depends(get_db)):
-    # Find peer group of the company
     group_row = db.execute("SELECT peer_group_name FROM peer_groups WHERE company_id=?", (ticker,)).fetchone()
     if not group_row:
         raise HTTPException(status_code=404, detail="No peer group assigned for this company")
         
     group_name = group_row['peer_group_name']
-    
-    # Get all peers in the group
     peers = db.execute("SELECT company_id as ticker, is_benchmark FROM peer_groups WHERE peer_group_name=?", (group_name,)).fetchall()
-    
-    # Get latest ratios for these peers
     tickers = [row['ticker'] for row in peers]
     placeholders = ','.join(['?'] * len(tickers))
     
     query = f"""
-    SELECT company_id as ticker, return_on_equity_pct as roe, debt_to_equity as de, 
-           composite_quality_score
-    FROM financial_ratios 
-    WHERE year = (SELECT MAX(year) FROM financial_ratios) AND company_id IN ({placeholders})
+    WITH LatestYear AS (
+        SELECT company_id, MAX(year) as max_year
+        FROM financial_ratios
+        GROUP BY company_id
+    )
+    SELECT r.company_id as ticker, r.return_on_equity_pct as roe, r.debt_to_equity as de, 
+           r.composite_quality_score
+    FROM financial_ratios r
+    JOIN LatestYear ly ON r.company_id = ly.company_id AND r.year = ly.max_year
+    WHERE r.company_id IN ({placeholders})
     """
     metrics = db.execute(query, tickers).fetchall()
     

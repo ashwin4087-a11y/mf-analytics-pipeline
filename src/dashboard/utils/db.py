@@ -4,7 +4,7 @@ import streamlit as st
 
 DB_PATH = "data/nifty100.db"
 
-@st.cache_data(ttl=600)
+@st.cache_resource
 def get_connection():
     return sqlite3.connect(DB_PATH, check_same_thread=False)
 
