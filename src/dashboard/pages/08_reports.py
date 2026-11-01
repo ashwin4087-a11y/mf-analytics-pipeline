@@ -1,30 +1,16 @@
+import sys
+import os
 import streamlit as st
-import pandas as pd
-from src.dashboard.utils.db import get_connection
 
-st.set_page_config(page_title="Annual Reports", layout="wide")
-st.title("Annual Reports")
+# Ensure project root is in sys.path
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 
-conn = get_connection()
-query = """
-SELECT c.company_name, d.year, d.annual_report
-FROM companies c
-JOIN documents d ON c.id = d.company_id
-WHERE d.annual_report IS NOT NULL AND d.annual_report != 'NA'
-ORDER BY c.company_name, d.year DESC
-"""
-df = pd.read_sql(query, conn)
+from src.dashboard.utils.theme import apply_terminal_theme, render_sidebar_header
+from src.dashboard.screens import render_screen_reports
 
-if not df.empty:
-    st.subheader("Available Annual Reports")
-    # Make links clickable using st.data_editor or st.write
-    st.dataframe(
-        df,
-        column_config={
-            "annual_report": st.column_config.LinkColumn("Annual Report Link")
-        },
-        hide_index=True,
-        use_container_width=True
-    )
-else:
-    st.info("No annual reports available.")
+st.set_page_config(page_title="Nifty 100 — Annual Reports", layout="wide", initial_sidebar_state="expanded")
+apply_terminal_theme()
+render_sidebar_header()
+render_screen_reports()

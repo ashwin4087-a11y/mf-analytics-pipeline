@@ -1,0 +1,82 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 22
+Module 7: Cash Flow Intelligence Module
+Deep analysis of cash flow quality, CapEx intensity, FCF generation, and capital allocation patterns. Identifies companies with strong FCF
+compounding over 5+ years.
+Sprint: Sprint 4–5 (Days 22–35)
+#
+Feature
+Logic
+Output
+7.1
+CFO Quality Score
+CFO/PAT ratio > 1.0 across 5yr avg = 'High Quality Earnings'. <0.5 = 'Accrual Risk'.
+Quality badge
+7.2
+CapEx Intensity
+CapEx / Revenue %. Light (<3%): asset-light. Heavy (>8%): capital intensive.
+Category label
+7.3
+FCF CAGR
+FCF CAGR over 5yr and 10yr. Same CAGR rules as revenue (turnaround flag).
+CAGR column
+7.4
+FCF Conversion Rate
+FCF / EBITDA. >60% = efficient. <30% = CapEx heavy.
+Ratio + tier
+7.5
+Debt Repayment Detection
+CFF < 0 AND borrowings declining YoY → 'Deleveraging' flag.
+Event flag
+7.6
+Distress Pattern
+CFO < 0 AND CFF > 0 (equity/debt raise to fund operations) → 'Distress Signal'.
+Alert badge
+7.7
+Capital Allocation Matrix
+8 CFO/CFI/CFF sign patterns → descriptive labels (Reinvestor, Shareholder Returns, etc.)
+Pattern table
+Output
+Detail
+cashflow_intelligence.xlsx
+All companies with CFO quality score, FCF CAGR, CapEx intensity, capital allocation label
+distress_alerts.csv
+Companies flagged for distress pattern with supporting data
+Module 8: Automated PDF Report Generator
+Generates company-level and portfolio-level PDF reports on demand using ReportLab. Two report types: Company Tearsheet (2 pages per company)
+and Portfolio Summary (all 92 companies, 1 page each).
+Sprint: Sprint 5 (Days 29–35)
+#
+Report Type
+Contents
+Frequency
+8.1
+Company Tearsheet (2-page)
+Page 1: KPI tiles, 10yr revenue & profit bar, ROE/ROCE trend line. Page 2: BS composition stacked bar, CF waterfall, capital allocation badge, pros/cons.
+On-demand via API
+8.2
+Portfolio Summary (1-page/co)
+All 92 companies in one PDF: company name, sector, top 6 KPIs, trend arrow (↑ ↓ →) for 3yr direction.
+Weekly batch (Sprint 5)
+8.3
+Sector Report
+Sector header page + all companies in sector. Sector median KPI table. Best/worst in sector highlighted.
+Monthly batch
+8.4
+Screener Output Report
+Formatted PDF of screener results with charts, sorted by composite score.
+On-demand
+8.5
+Peer Group Report
+Radar charts + side-by-side table for each of 11 peer groups.
+Weekly batch
+Output
+Detail
+reports/tearsheets/
+92 PDFs — one per company. Filename: <TICKER>_tearsheet.pdf
+reports/portfolio/
+portfolio_summary_YYYYMMDD.pdf — all 92 companies in one document
+reports/sector/
+11 sector PDFs. Filename: <SECTOR>_report_YYYYMMDD.pdf

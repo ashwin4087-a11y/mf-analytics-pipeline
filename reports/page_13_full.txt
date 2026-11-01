@@ -1,0 +1,47 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 13
+Column
+Type
+Nullable
+Sample Value
+Notes
+Year
+INTEGER
+No
+2024
+Calendar year of annual report. Note: capital 'Y'. Cast to int.
+Annual_Report
+TEXT
+Yes
+https://bseindia.com/…pdf
+Direct PDF URL on BSE India. Validate with requests.head(). Some return 404.
+5.7 prosandcons.xlsx — Qualitative Investment Insights
+Column
+Type
+Nullable
+Sample Value
+Notes
+id
+INTEGER
+No
+1
+Row ID.
+company_id
+VARCHAR
+No
+HDFCBANK
+FK → companies.id.
+pros
+TEXT
+Yes
+Company is expected to give good quarter
+Positive observation. One per row. Multiple rows per company allowed.
+cons
+TEXT
+Yes
+Stock trading at 2.76× book value
+Risk observation. One per row.
+Coverage gap: Only 16 records covering ~8 companies. Sprint 3 task: auto-generate pros/cons for all 92 companies using KPI threshold rules.
+Examples: ROE>20% sustained → pro; D/E>2.0 → con; FCF negative 3yr → con.

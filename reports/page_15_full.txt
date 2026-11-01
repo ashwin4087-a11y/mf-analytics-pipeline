@@ -1,0 +1,121 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 15
+6.3 market_cap.xlsx — Annual Valuation Multiples
+Column
+Type
+Range
+Notes
+company_id
+VARCHAR
+NSE Ticker
+FK → companies.id.
+year
+INTEGER
+2019–2024
+Calendar year. One row per company per year.
+market_cap_crore
+NUMERIC
+■5K–■15L Cr
+Market capitalisation. Simulated. Use for EV, P/E, FCF yield denominator.
+enterprise_value_crore
+NUMERIC
+■4K–■17L Cr
+EV = Mkt Cap + Net Debt (proxy). Simulated.
+pe_ratio
+NUMERIC
+8–80×
+Price-to-Earnings. Simulated around sector norms.
+pb_ratio
+NUMERIC
+0.5–15×
+Price-to-Book. Cross-check vs book_value in companies.xlsx.
+ev_ebitda
+NUMERIC
+5–40×
+EV / EBITDA multiple. Use for sector valuation comparison.
+dividend_yield_pct
+NUMERIC
+0–4.5%
+Annual dividend yield. Simulated.
+6.4 financial_ratios.xlsx — Pre-Computed KPI Table
+Column
+Source
+Formula / Notes
+company_id, year
+All
+Composite PK.
+net_profit_margin_pct
+P&L
+net_profit / sales × 100. Negative allowed.
+operating_profit_margin_pct
+P&L
+From opm_percentage source field. Cross-validate vs computed.
+return_on_equity_pct
+P&L+BS
+net_profit / (equity_cap + reserves) × 100.
+debt_to_equity
+BS
+borrowings / (equity_cap + reserves). 0 = debt-free.
+interest_coverage
+P&L
+(op_profit + other_income) / interest. None if interest = 0.
+asset_turnover
+P&L+BS
+sales / total_assets.
+free_cash_flow_cr
+CF
+operating_activity + investing_activity (■ Cr).
+capex_cr
+CF
+abs(investing_activity) — CapEx proxy (■ Cr).
+earnings_per_share
+P&L
+eps source field (■).
+book_value_per_share
+BS+Co
+(equity + reserves) / (equity_cap / face_value) (■).
+dividend_payout_ratio_pct
+P&L
+dividend_payout source field (%).
+total_debt_cr
+BS
+borrowings (■ Cr).
+cash_from_operations_cr
+CF
+operating_activity (■ Cr).
+6.5 peer_groups.xlsx — Peer Comparison Groups
+Peer Group
+Members
+Benchmark
+Private Banks
+HDFCBANK, ICICIBANK, AXISBANK, KOTAKBANK, INDUSINDBK
+HDFCBANK
+Public Banks
+SBIN, BANKBARODA, CANBK, PNB
+SBIN
+IT Services
+TCS, INFY, HCLTECH, TECHM, LTIM
+TCS
+Pharmaceuticals
+SUNPHARMA, CIPLA, DRREDDY, DIVISLAB, TORNTPHARM
+SUNPHARMA
+Automobiles
+MARUTI, TATAMOTORS, M&M, BAJAJ-AUTO, EICHERMOT, HEROMOTOCO, TVSMOTOR
+MARUTI
+Life Insurance
+LICI, HDFCLIFE, SBILIFE, ICICIPRULI
+LICI
+Oil & Gas
+RELIANCE, ONGC, BPCL, IOC, GAIL
+RELIANCE
+Power & Utilities
+NTPC, POWERGRID, TATAPOWER, ADANIPOWER, NHPC, JSWENERGY, ADANIGREEN
+NTPC
+Steel & Metals
+TATASTEEL, JSWSTEEL, JINDALSTEL, HINDALCO
+TATASTEEL
+FMCG
+HINDUNILVR, ITC, BRITANNIA, DABUR, NESTLEIND, GODREJCP, TATACONSUM
+HINDUNILVR

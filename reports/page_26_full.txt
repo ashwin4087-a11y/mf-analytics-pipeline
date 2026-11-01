@@ -1,0 +1,95 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 26
+Sprint 3 — Screener & Peer Comparison (Days 15–21)
+Day
+Tasks
+Deliverable
+D15
+Build custom filter engine: load screener_config.yaml; apply threshold filters to financial_ratios via pandas query.
+src/screener/engine.py
+D16
+Implement 6 preset screeners. Test each preset on the full 92-company universe. Verify results make business sense.
+6 screener presets in config
+D17
+Build ranking engine: composite score (50/30/20 weights). Sector-relative normalisation. Export to screener_output.xlsx.
+screener_output.xlsx
+D18
+Build peer group module: load peer_groups.xlsx; compute PERCENT_RANK per metric per group for all 11 groups.
+analytics/peer.py, peer_percentiles table
+D19
+Generate radar chart data for each company-peer group pair. Plot Plotly radar PNG for each company.
+reports/radar_charts/ (92 PNGs)
+D20
+Generate peer_comparison.xlsx: one sheet per peer group, all metrics, colour-coded cells.
+peer_comparison.xlsx
+D21
+Run all DQ rule tests. Fix failures. Sprint retrospective.
+All tests green, sprint3_retro.md
+Sprint 4 — Dashboard & Valuation (Days 22–28)
+Day
+Tasks
+Deliverable
+D22
+Scaffold Streamlit app: main app.py + pages/ directory. Shared data loader (load_db() function). Style config (sidebar logo, colour theme).
+app.py, pages/ skeleton
+D23
+Build Home screen (5.1) and Company Profile screen (5.2): ticker search, KPI tiles, 10yr bar charts.
+pages/01_home.py, pages/02_profile.py
+D24
+Build Screener screen (5.3): sidebar sliders, live table, CSV download. Peer Comparison screen (5.4): group selector, radar.
+pages/03_screener.py, pages/04_peer.py
+D25
+Build Trend Analysis (5.5), Sector Analysis (5.6), Capital Allocation Map (5.7), Annual Reports (5.8).
+pages/05–08.py
+D26
+Build Valuation module: valuation_summary.xlsx, overvaluation flags, FCF yield column. Integrate valuation screen if time permits.
+valuation_summary.xlsx
+D27
+Dashboard integration testing: test all 8 screens with 10 random tickers. Fix chart sizing, overflow, and missing-data edge cases.
+Test log: dashboard_qa.md
+D28
+Sprint retrospective. Update README.md with app run instructions (streamlit run app.py). Record screen walkthrough video (optional).
+README.md update, sprint4_retro.md
+Sprints 5–6 — Intelligence, Reports, API & QA (Days 29–45) Summary
+Days
+Theme
+Key Daily Tasks
+Exit Gate
+D29–30
+NLP Module
+Parser for analysis.xlsx CAGR text. Auto pros/cons generator (12 pro + 12 con rules).
+pros_cons_generated.csv: 92 companies
+D31–32
+Cash Flow Intelligence
+CFO quality score, CapEx intensity, distress pattern flagging, capital allocation matrix.
+cashflow_intelligence.xlsx
+D33–35
+PDF Report Generator
+Company Tearsheet (2-page × 92). Sector reports (11). Portfolio summary. All reports in reports/ dir.
+92 tearsheets + 11 sector PDFs
+D36–37
+KMeans Clustering
+StandardScaler + KMeans(n=5). Elbow plot. Assign cluster labels. Correlation matrix heatmap.
+cluster_labels.csv, heatmap.png
+D38–40
+FastAPI Server
+16 endpoints in api/ directory. Uvicorn server. OpenAPI docs at /docs. Postman collection exported.
+openapi.json, postman_collection.json
+D41–42
+Full Test Suite
+60+ pytest tests across 4 categories. Fix failures. Generate HTML test report.
+pytest_report.html: all green
+D43
+Integration Testing
+End-to-end: API → Dashboard data flow. Load test with 10 concurrent screener queries. Fix bottlenecks.
+Load test results in perf_notes.md
+D44
+Documentation
+Update all docstrings. Write analyst_guide.pdf (how to use screener + dashboard). Review project doc.
+analyst_guide.pdf
+D45
+Final Sign-Off
+Run acceptance checklist (23 gates). Present to team lead. Archive final deliverables to output/ dir.
+Signed acceptance_checklist.pdf

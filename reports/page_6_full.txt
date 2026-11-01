@@ -1,0 +1,160 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 6
+3. Executive Summary
+Strategic Overview &
+Key Metrics
+ 
+Attribute
+Detail
+Platform Name
+Nifty 100 Financial Intelligence Platform
+Core Purpose
+Transform raw financial statement data into structured analytics intelligence for 92 Nifty 100 companies
+Data Foundation
+7 core + 5 supplementary datasets covering P&L, Balance Sheet, Cash Flow, Sectors, Market Cap, Pricing
+Analytical Scope
+10–13 years of annual financial history per company; 50+ computed KPIs; 12 analytics modules
+Primary Outputs
+Investment screener, financial health scores, sector benchmarks, automated PDF/Excel reports, Streamlit dashboard
+Target Users
+Data Analysts — individually assigned to specific modules per this project document
+Build Timeline
+45 calendar days  |  6 weekly sprints  |  3 buffer days
+Quality Standard
+Production-grade: ≥80% test coverage, full documentation, zero critical bugs at handoff
+Currency Standard
+All monetary values in Indian Rupees — Crore (■ Cr) unless explicitly stated otherwise
+Index Universe
+Nifty 100 — 92 companies after data availability filter applied
+Category
+Metric
+Value
+Category
+Metric
+Value
+Data
+Core Datasets
+7
+Platform
+Analytics Modules
+12
+Data
+Supplementary Datasets
+5
+Platform
+Total Features
+120+
+Data
+Total Companies
+92
+Platform
+Financial KPIs
+50+
+Data
+P&L Records
+1,276
+Platform
+Screener Filters
+18
+Data
+Balance Sheet Records
+1,312
+Platform
+Pre-built Screens
+6
+Data
+Cash Flow Records
+1,187
+Platform
+Peer Groups
+11
+Data
+Annual Report Links
+1,585
+Platform
+Sector Categories
+11
+Data
+Stock Price Records
+5,520
+Quality
+Test Coverage Target
+≥80%
+Data
+Computed Ratio Records
+1,184
+Quality
+DQ Validation Rules
+14
+Time
+Total Duration
+45 Days
+Quality
+Acceptance Criteria
+20
+#
+Key Outcome
+Business Value
+Owner Module
+01
+Unified financial data warehouse for 92 companies
+Single source of truth; eliminates manual data gathering
+ETL Pipeline
+02
+50+ computed KPIs per company per year
+Instant quantitative assessment without manual calculation
+Ratio Engine
+03
+Multi-parameter investment screener (18 filters)
+Reduces analyst time-to-insight from hours to seconds
+Screener
+04
+Composite Financial Health Score (0–100)
+Standardised risk triage across the full universe
+Health Score
+05
+Sector benchmarks across 11 broad sectors
+Sector rotation analysis and relative positioning
+Sector Analytics
+06
+Peer comparison engine for 11 peer groups
+Identifies best-in-class within comparable peer universes
+Peer Comparison
+07
+Automated PDF and Excel report generation
+Reproducible, consistent output; eliminates manual writing
+Reporting
+08
+Streamlit dashboard — analyst-facing interface
+Zero-code interface for non-programmer stakeholders
+Dashboard
+09
+Annual report repository — 1,585 links
+Direct access to primary source documents
+Document Repo
+10
+Rule-based alert system and company watchlist
+Proactive KPI deterioration monitoring
+Alerts
+Sprint
+Days
+Focus Area
+Primary Deliverable
+Exit Gate
+Sprint 1
+1–7
+Foundation & ETL
+SQLite DB loaded; DQ report
+0 critical DQ violations; ≥80% ETL coverage
+Sprint 2
+8–14
+Ratio Engine
+50+ KPIs in financial_ratios table
+Values validated vs 5 companies ±2%
+Sprint 3
+15–21
+Screener, Score & Sector
+Screener, FHS, Sector module
+All 3 modules correct; scores 0–100 for all 92

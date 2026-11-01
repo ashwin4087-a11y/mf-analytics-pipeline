@@ -1,0 +1,36 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 39
+24. Sample SQL Queries
+Ready-to-Run Queries
+for Common Analytical
+ Tasks
+ 
+Query Name
+SQL
+Purpose
+Top 10 ROE Companies (Latest Year)
+SELECT r.company_id, c.company_name, r.return_on_equity_pct FROM financial_ratios r JOIN companies c ON r.company_id=c.id WHERE r.year=(SELECT MAX(year) FROM financial_ratios) ORDER BY r.return_on_equity_pct DESC LIMIT 10;
+Identify highest ROE companies for quality screener
+Debt-Free Companies
+SELECT company_id, year, debt_to_equity FROM financial_ratios WHERE debt_to_equity = 0 AND year=(SELECT MAX(year) FROM financial_ratios);
+Filter zero-debt companies for debt-free screener
+Consecutive FCF Positive (5yr)
+SELECT company_id, COUNT(*) AS positive_fcf_yrs FROM financial_ratios WHERE free_cash_flow_cr > 0 GROUP BY company_id HAVING positive_fcf_yrs >= 5;
+Identify consistently cash-generating companies
+Sector Median ROE
+SELECT s.broad_sector, ROUND(AVG(r.return_on_equity_pct),1) AS median_roe FROM financial_ratios r JOIN sectors s ON r.company_id=s.company_id WHERE r.year=(SELECT MAX(year) FROM financial_ratios) GROUP BY s.broad_sector ORDER BY median_roe DESC;
+Sector-level profitability comparison
+Capital Allocation Pattern Count
+SELECT pattern_label, COUNT(*) AS companies FROM capital_allocation WHERE year=(SELECT MAX(year) FROM capital_allocation) GROUP BY pattern_label ORDER BY companies DESC;
+Distribution of capital allocation patterns across Nifty 100
+Revenue CAGR > 15% (5yr)
+SELECT r.company_id, c.company_name, r.revenue_cagr_5yr FROM financial_ratios r JOIN companies c ON r.company_id=c.id WHERE r.revenue_cagr_5yr > 15 ORDER BY r.revenue_cagr_5yr DESC;
+High-growth revenue screener
+Missing Annual Reports
+SELECT c.id, c.company_name, 2024-COUNT(d.Year) AS missing_yrs FROM companies c LEFT JOIN documents d ON c.id=d.company_id AND d.Year >= 2015 GROUP BY c.id HAVING missing_yrs > 2 ORDER BY missing_yrs DESC;
+Identify companies with documentation gaps
+Peer Group Rankings (ROE)
+SELECT p.peer_group_name, r.company_id, r.return_on_equity_pct, RANK() OVER (PARTITION BY p.peer_group_name ORDER BY r.return_on_equity_pct DESC) AS roe_rank FROM financial_ratios r JOIN peer_groups p ON r.company_id=p.company_id WHERE r.year=(SELECT MAX(year) FROM financial_ratios);
+Intra-peer ROE ranking for all 11 peer groups

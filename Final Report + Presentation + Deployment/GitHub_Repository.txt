@@ -1,0 +1,6 @@
+Bluestock Mutual Fund Analytics – GitHub Repository
+
+https://github.com/ashwin4087-a11y/mf-analytics-pipeline
+
+Branch: main
+Release Tag: v1.0

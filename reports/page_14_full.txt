@@ -1,0 +1,126 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 14
+6. Supplementary Datasets
+Created to Augment
+Core Analysis —
+Location: supporting
+ datasets/
+ 
+File
+Rows
+Created From
+Analytical Purpose
+sectors.xlsx
+92
+Manual GICS-style mapping of all 92 companies
+Sector/sub-sector aggregation, relative scoring, sector filter in screener
+stock_prices.xlsx
+5,520
+Simulated monthly OHLCV — Jan 2020 to Dec 2024
+Price trend charts, monthly return calculation, FCF yield denominator
+market_cap.xlsx
+552
+Simulated annual P/E, P/B, EV/EBITDA, Mkt Cap
+Valuation screening (P/E, P/B), EV/EBITDA comp, dividend yield display
+financial_ratios.xlsx
+1,184
+Computed from P&L + Balance Sheet + Cash Flow
+Pre-computed KPI table; screener backbone; health score inputs
+peer_groups.xlsx
+56
+Manually defined 11 peer groups + benchmark flags
+Peer comparison engine; relative percentile ranking
+6.1 sectors.xlsx — Company Sector Mapping
+Column
+Values / Range
+Notes
+company_id
+NSE Ticker (92 unique)
+FK → companies.id. One row per company.
+broad_sector
+11 macro sectors
+Financials, Energy, IT, Consumer Discretionary, Consumer Staples, Healthcare, Materials, Industrials, Communication Services, Real Estate, Conglomerates
+sub_sector
+33 sub-sectors
+e.g. Private Banks, IT Services, Pharmaceuticals, Steel, FMCG, etc.
+index_weight_pct
+0.2 – 4.5%
+Estimated Nifty 100 index weight. For display only; not used in KPI calculations.
+market_cap_category
+Large Cap / Mid Cap
+Classification at dataset creation time.
+Broad Sector
+Sub-Sectors Included
+Companies
+Financials
+Private Banks, Public Sector Banks, Life Insurance, General Insurance, Consumer Finance, Holding Cos, Speciality Finance
+19
+Energy
+Oil & Gas Refining, Oil & Gas Exploration, Power & Utilities, Renewable Energy, Gas Distribution, Power Transmission
+15
+Information Technology
+IT Services, Internet & Platforms
+6
+Consumer Discretionary
+Automobiles, Two Wheelers, Auto Ancillaries, Retail, Gems & Jewellery, Airlines, Travel & Tourism
+12
+Consumer Staples
+FMCG, Food Products, Food & Beverages, Personal Products
+8
+Healthcare
+Pharmaceuticals
+5
+Materials
+Steel, Metals & Mining, Cement, Specialty Chemicals, Paints & Coatings
+8
+Industrials
+Capital Goods, Defence Electronics, Defence & Aerospace, Engineering & Construction, Consumer Electricals
+9
+Communication Services
+Telecommunications, Internet & Platforms
+2
+Real Estate
+Real Estate, Infrastructure
+3
+Conglomerates / Other
+Diversified Conglomerates, Holding Companies
+5
+6.2 stock_prices.xlsx — Monthly OHLCV Price History (Simulated)
+Column
+Type
+Range / Format
+Notes
+company_id
+VARCHAR
+NSE Ticker
+FK → companies.id.
+date
+VARCHAR
+YYYY-MM-DD
+First calendar day of each month. Covers Jan 2020 – Dec 2024 (60 months).
+open_price
+NUMERIC
+■5 – ■18,000
+Simulated monthly opening price. For price trend and return charts.
+high_price
+NUMERIC
+■5 – ■19,000
+Monthly high. Always ≥ open and ≥ close.
+low_price
+NUMERIC
+■4 – ■17,500
+Monthly low. Always ≤ open and ≤ close.
+close_price
+NUMERIC
+■5 – ■18,000
+Monthly closing price. Primary field for return calculations.
+volume
+INTEGER
+100K – 50M
+Simulated monthly traded volume in shares.
+adjusted_close
+NUMERIC
+■5 – ■18,000
+Same as close_price (no dividend adjustment in simulation).

@@ -1,0 +1,93 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 21
+10. Module Specifications — Modules 5–8
+Dashboard, Valuation,
+Cash Flow Intelligence
+ & Reports
+ 
+Module 5: Interactive Streamlit Dashboard
+8-screen web application. No authentication required for MVP. All screens load from SQLite. Deployed locally via `streamlit run app.py`. All charts are
+Plotly interactive; all tables are sortable.
+Sprint: Sprint 4 (Days 22–28)
+#
+Screen
+Key Widgets / Features
+Data Source
+5.1
+Home / Overview
+Nifty 100 summary KPIs: avg ROE, median P/E, sectors donut. Market health banner.
+companies + financial_ratios
+5.2
+Company Profile
+Search by name/ticker. Company card: logo, description, KPI tiles (6 metrics), P&L chart, BS chart, CF bar chart, pros/cons badges.
+All core tables
+5.3
+Financial Screener
+Sidebar sliders for 10 metrics. Live-updating results table. CSV download button.
+financial_ratios + market_cap
+5.4
+Peer Comparison
+Select peer group → radar chart + side-by-side table. Toggle between years.
+peer_groups + financial_ratios
+5.5
+Trend Analysis
+Select company + metric → 10-year sparkline + YoY % change annotation. Multi-metric overlay mode.
+profitandloss + balancesheet
+5.6
+Sector Analysis
+Sector selector → bubble chart (revenue vs ROE, size = mkt cap). Sector median KPI bar chart.
+sectors + financial_ratios + market_cap
+5.7
+Capital Allocation Map
+Treemap of 92 companies by capital pattern (8 categories). Click → drill down to company list.
+financial_ratios (CFO/CFI/CFF signs)
+5.8
+Annual Reports
+Company → year → clickable BSE PDF link. Badge for missing reports.
+documents
+Output
+Detail
+app.py + pages/
+Streamlit multi-page app. One file per screen under pages/ directory.
+dashboard_guide.md
+Analyst guide: how to navigate each screen, filter, and export data.
+Module 6: Valuation & Market Data Module
+Uses market_cap.xlsx to compute and display valuation metrics. Provides historical P/E, P/B, EV/EBITDA trends. Flags companies trading above
+historical average multiples (potentially overvalued).
+Sprint: Sprint 4 (Days 22–28)
+#
+Feature
+Logic
+Output
+6.1
+P/E Trend Chart
+Line chart of P/E ratio across 2019–2024 per company
+Plotly chart
+6.2
+P/B vs ROE Scatter
+X=P/B, Y=ROE, size=Mkt Cap, colour=sector for all 92 companies
+Scatter plot PNG
+6.3
+EV/EBITDA Comp Table
+Current EV/EBITDA vs 5yr median, vs sector median. Flag if >20% above sector.
+Formatted table
+6.4
+Dividend Yield Ranker
+Rank 92 companies by dividend yield. Filter by min yield threshold.
+Ranked list
+6.5
+FCF Yield Calculator
+FCF / Market_Cap × 100. Rank descending. High FCF yield = value signal.
+Computed column
+6.6
+Overvaluation Flag
+P/E > (sector_median × 1.5) → 'Caution' badge. P/E < (sector_median × 0.7) → 'Discount' badge.
+Badge system
+Output
+Detail
+valuation_summary.xlsx
+All 92 companies with current + 5yr median multiples, sector rank, badges
+valuation_flags.csv
+List of 'Caution' and 'Discount' flagged companies with rationale

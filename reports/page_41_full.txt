@@ -1,0 +1,36 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 41
+Test File
+Test Name
+Input
+Expected Output
+tests/kpi/test_ratios.py
+test_cagr_normal
+base=100, end=161, n=5
+CAGR ≈ 10.0%
+tests/dq/test_rules.py
+test_dq04_bs_balance
+assets=1000, liab=1020
+DQ-04 WARNING triggered
+tests/dq/test_rules.py
+test_dq06_zero_sales
+sales=0
+DQ-06 WARNING triggered
+tests/api/test_health.py
+test_health_200
+GET /api/v1/health
+HTTP 200, status='ok'
+tests/api/test_api.py
+test_companies_count
+GET /api/v1/companies
+92 records returned
+tests/api/test_api.py
+test_invalid_ticker
+GET /api/v1/companies/INVALID
+HTTP 404
+tests/api/test_api.py
+test_screener_filter
+GET /api/v1/screener?min_roe=15
+All results have ROE ≥ 15

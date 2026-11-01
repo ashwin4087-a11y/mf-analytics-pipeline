@@ -1,0 +1,130 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 31
+17. Deliverables Checklist
+23 Mandatory
+Deliverables —
+Sign-Off Required on
+ Day 45
+ 
+#
+Deliverable
+Format
+Owner Sprint
+Sign-Off Criteria
+D-01
+nifty100.db
+SQLite file
+S1
+All 10 tables populated. rowcounts match source. FK constraints pass.
+D-02
+load_audit.csv
+CSV
+S1
+All 12 files loaded. Zero CRITICAL failures.
+D-03
+validation_failures.csv
+CSV
+S1
+All DQ rule violations documented with severity.
+D-04
+exploratory_queries.sql
+SQL
+S1
+10+ queries covering coverage, nulls, year distribution.
+D-05
+financial_ratios table
+SQLite table
+S2
+14 KPI columns. 1,184+ rows. KPI formula tests pass.
+D-06
+capital_allocation.csv
+CSV
+S2
+All 92 companies × all years with pattern label.
+D-07
+screener_output.xlsx
+Excel
+S3
+6 preset screener results with composite score + 20 KPIs.
+D-08
+screener_config.yaml
+YAML
+S3
+All 15 filter thresholds defined. Analyst-editable.
+D-09
+peer_comparison.xlsx
+Excel
+S3
+11 sheets. Colour-coded percentile cells. 20 metrics.
+D-10
+radar_charts/ (92 PNGs)
+PNG files
+S3
+One radar chart per company. 8 axes. Peer avg overlay.
+D-11
+Streamlit Dashboard (app.py)
+Python app
+S4
+8 screens. All navigable. CSV export functional.
+D-12
+valuation_summary.xlsx
+Excel
+S4
+All 92 companies. P/E, P/B, EV/EBITDA, flags.
+D-13
+cashflow_intelligence.xlsx
+Excel
+S5
+CFO quality score, FCF CAGR, CapEx intensity, distress flags.
+D-14
+pros_cons_generated.csv
+CSV
+S5
+92 companies. Rule-triggered. Confidence > 60%.
+D-15
+analysis_parsed.csv
+CSV
+S5
+Structured CAGR numbers from analysis.xlsx. Cross-validated.
+D-16
+Company Tearsheets (92 PDFs)
+PDF files
+S5
+2 pages per company. All 92 companies. In reports/tearsheets/
+D-17
+Sector Reports (11 PDFs)
+PDF files
+S5
+One per broad sector. KPI table + company list.
+D-18
+Portfolio Summary PDF
+PDF
+S5
+All 92 companies, 1-page each in one document.
+D-19
+cluster_labels.csv
+CSV
+S6
+5 clusters. All 92 companies assigned. Cluster names labelled.
+D-20
+FastAPI Server (api/)
+Python app
+S6
+16 endpoints. openapi.json exported. /health returns 200.
+D-21
+pytest_report.html
+HTML
+S6
+60+ tests. All green. Runtime < 120 seconds total.
+D-22
+analyst_guide.pdf
+PDF
+S6
+Screener usage guide + dashboard navigation. 10–15 pages.
+D-23
+acceptance_checklist.pdf
+PDF
+S6
+23 deliverables reviewed and signed off. Date stamped.

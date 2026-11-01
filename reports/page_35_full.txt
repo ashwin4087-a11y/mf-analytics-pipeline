@@ -1,0 +1,12 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 35
+Term
+Definition
+Turnaround Flag
+Applied to CAGR calculations where the base year value is negative and end year value is positive. CAGR set to None.
+UW
+Usable Width. PDF page width (21 cm) minus margins (3 cm) = 16.6 cm. All table column widths must sum to UW.
+Winsorisation
+Statistical technique: cap extreme values at P10/P90. Prevents outliers from distorting composite score normalisation.

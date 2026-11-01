@@ -1,0 +1,188 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 10
+5. Dataset Catalogue — Core Datasets
+Schema, Data
+Dictionary, Quality
+Notes & Usage
+Dataset
+Sheet
+Records
+Cols
+Time Coverage
+Primary Key
+Currency
+companies.xlsx
+Companies
+92
+12
+Current snapshot
+id (NSE ticker)
+N/A
+profitandloss.xlsx
+Profit & Loss
+1,276
+15
+FY 2010–2024
+(company_id, year)
+■ Crore
+balancesheet.xlsx
+Balance Sheet
+1,312
+13
+FY 2010–2024
+(company_id, year)
+■ Crore
+cashflow.xlsx
+Cash Flow
+1,187
+7
+FY 2010–2024
+(company_id, year)
+■ Crore
+analysis.xlsx
+Analysis
+20
+6
+Multi-period text
+company_id
+% strings
+documents.xlsx
+Documents
+1,585
+4
+Calendar 2010–2024
+(company_id, Year)
+N/A — URLs
+prosandcons.xlsx
+Pros & Cons
+16
+4
+Current
+id (auto)
+N/A — text
+Load note: Core files use pd.read_excel(path, header=1) — Row 0 is metadata; Row 1 is actual headers. Supplementary files use header=0.
+Normalise company_id to uppercase stripped NSE ticker on every load.
+5.1 companies.xlsx — Master Company Reference
+Column
+Type
+Nullable
+Sample Value
+Description & Notes
+id
+VARCHAR
+No
+TCS
+NSE ticker — Primary Key for entire platform. Strip whitespace; uppercase.
+company_logo
+TEXT
+Yes
+https://…/TCS.png
+URL to company logo image. Some may return 404 — handle gracefully.
+company_name
+VARCHAR
+No
+Tata Consultancy Services Ltd
+Full legal name. Some entries contain embedded \n — strip on load.
+chart_link
+TEXT
+Yes
+https://in.tradingview.com/…
+TradingView chart URL. For display only; not used in computation.
+about_company
+TEXT
+Yes
+TCS is a leading IT…
+Business description. Length: 50–600 chars. Display in company card.
+website
+TEXT
+Yes
+https://www.tcs.com/
+Official corporate website URL.
+nse_profile
+TEXT
+Yes
+https://nseindia.com/…
+NSE India equity profile page URL.
+bse_profile
+TEXT
+Yes
+https://bseindia.com/…
+BSE India stock page URL.
+face_value
+NUMERIC
+No
+1
+Share face value in ■. Common: 1, 2, 5, 10. Used in book value calculation.
+book_value
+NUMERIC
+Yes
+157.40
+Book value per share in ■ (latest). Display only; compute from BS for analytics.
+roce_percentage
+NUMERIC
+Yes
+64.30
+ROCE % (pre-computed). Use for display; Ratio Engine values for analytics.
+roe_percentage
+NUMERIC
+Yes
+0.52
+ROE % (pre-computed). Note: TCS shows 0.52 — anomaly; use Ratio Engine value.
+5.2 profitandloss.xlsx — Annual Profit & Loss Statements
+Column
+Type
+Nullable
+Sample (TCS FY23)
+Formula / Notes
+id
+INTEGER
+No
+61
+Row ID — not analytically meaningful. Use composite key.
+company_id
+VARCHAR
+No
+TCS
+FK → companies.id. Normalise to uppercase stripped ticker.
+year
+VARCHAR
+No
+Mar-23
+Financial year label. Standardise to 'YYYY-MM' on load via normalize_year().
+sales
+NUMERIC
+No
+225,458
+Net revenue / total income. Must be > 0. ■ Crore.
+expenses
+NUMERIC
+No
+176,924
+Total operating expenses. ■ Crore.
+operating_profit
+NUMERIC
+No
+48,534
+EBITDA. Cross-validate: must equal sales − expenses within ±1%.
+opm_percentage
+NUMERIC
+No
+21.5
+OPM %. Validate: = operating_profit/sales×100 ±1%. Flag if diff >1%.
+other_income
+NUMERIC
+Yes
+3,800
+Non-operating income (dividends received, interest). ■ Crore.
+interest
+NUMERIC
+Yes
+0
+Finance costs. 0 for debt-free companies. ■ Crore.
+depreciation
+NUMERIC
+Yes
+5,800
+D&A. ■ Crore. EBIT = operating_profit − depreciation.

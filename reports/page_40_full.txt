@@ -1,0 +1,153 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 40
+25. Screener Configuration Reference
+screener_config.yaml
+— All Threshold
+Definitions
+ 
+Preset Name
+Filters Applied
+Ranking Metric
+Expected Company Count
+Quality Compounder
+ROE > 15%, D/E < 1.0, FCF > 0, Revenue CAGR 5yr > 10%
+Composite Score (desc)
+15–35 companies
+Value Pick
+P/E < 20, P/B < 3.0, D/E < 2.0, Dividend Yield > 1%
+FCF Yield (desc)
+10–25 companies
+Growth Accelerator
+PAT CAGR 5yr > 20%, Revenue CAGR 5yr > 15%, D/E < 2.0
+PAT CAGR 5yr (desc)
+8–20 companies
+Dividend Champion
+Dividend Yield > 2%, Dividend Payout < 80%, FCF > 0
+Dividend Yield (desc)
+10–20 companies
+Debt-Free Blue Chip
+D/E = 0, ROE > 12%, Revenue > 5,000 Cr
+ROE (desc)
+15–30 companies
+Turnaround Watch
+Revenue CAGR 3yr > 10%, FCF improving (positive latest yr), D/E declining
+Revenue CAGR 3yr (desc)
+5–15 companies
+25.1 Composite Score Weights
+Dimension
+Weight
+Inputs
+Normalisation
+Profitability
+35%
+ROE (15%), ROCE (10%), NPM (10%)
+Winsorise P10–P90; scale 0–100 per metric; weighted avg
+Cash Quality
+30%
+FCF CAGR 5yr (15%), CFO/PAT ratio (10%), FCF > 0 flag (5%)
+Same; FCF flag = 100 if positive, 0 if negative
+Growth
+20%
+Revenue CAGR 5yr (10%), PAT CAGR 5yr (10%)
+Same; CAGR flags (Turnaround) → score = 0
+Leverage
+15%
+D/E score (10%), ICR score (5%)
+D/E: 0=100, 0.5=85, 1=70, 2=50, >5=0. ICR: >10=100, 5=75, 3=50, <1.5=0
+26. Dashboard Screen Specifications
+Screen
+URL Path
+Key Data Queries
+Interactive Elements
+Export
+Home / Overview
+/
+SELECT from companies + financial_ratios (latest year). Sector donut data.
+Sector filter chips, year selector (2019–2024)
+—
+Company Profile
+/company
+All tables for selected ticker. Union P&L + BS + CF.
+Ticker search box, year range slider
+PDF tearsheet download link
+Financial Screener
+/screener
+SELECT from financial_ratios + market_cap with WHERE clauses.
+10 metric sliders in sidebar, preset dropdown
+CSV download, Excel download
+Peer Comparison
+/peers
+SELECT from peer_percentiles + financial_ratios for group.
+Peer group dropdown, metric axis selector (8 axes)
+PNG chart save, Excel table
+Trend Analysis
+/trends
+SELECT time-series from financial_ratios for ticker + metric.
+Ticker search, metric multi-select (overlay up to 3)
+CSV download
+Sector Analysis
+/sectors
+SELECT with JOIN sectors. Bubble chart data + KPI table.
+Sector dropdown, year slider, metric selector for axes
+PNG chart save
+Capital Allocation Map
+/capital
+SELECT capital_allocation by year.
+Year slider, click on pattern category → company list
+CSV download
+Annual Reports
+/documents
+SELECT from documents WHERE company_id = ticker.
+Ticker search, year filter
+—
+27. Testing Framework — Test Case Reference
+Test File
+Test Name
+Input
+Expected Output
+tests/etl/test_normalise.py
+test_year_mar23
+Mar-23
+2023-03
+tests/etl/test_normalise.py
+test_year_fy24
+FY24
+2024-03
+tests/etl/test_normalise.py
+test_year_dec22
+Dec-22
+2022-12
+tests/etl/test_normalise.py
+test_year_garbage
+xyz
+PARSE_ERROR
+tests/etl/test_normalise.py
+test_ticker_strip
+  TCS  
+TCS
+tests/etl/test_normalise.py
+test_ticker_lower
+tcs
+TCS
+tests/kpi/test_ratios.py
+test_roe_positive
+net_profit=100, equity=500
+ROE = 20.0
+tests/kpi/test_ratios.py
+test_roe_neg_equity
+net_profit=100, equity=-50
+ROE = None
+tests/kpi/test_ratios.py
+test_de_debtfree
+borrowings=0, equity=500
+D/E = 0
+tests/kpi/test_ratios.py
+test_icr_debtfree
+interest=0
+ICR = None (display 'Debt Free')
+tests/kpi/test_ratios.py
+test_cagr_turnaround
+base=-100, end=200
+CAGR = None, flag='TURNAROUND'

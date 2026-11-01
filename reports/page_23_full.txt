@@ -1,0 +1,78 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 23
+11. Module Specifications — Modules 9–12
+NLP, Clustering, API &
+ Testing
+ 
+Module 9: NLP & Qualitative Analysis Module
+Parses and enriches qualitative text fields: about_company, pros, cons, analysis strings. Auto-generates pros/cons for companies with missing records
+using KPI-threshold rules. Extracts CAGR numbers from analysis.xlsx text fields.
+Sprint: Sprint 5 (Days 29–35)
+#
+Feature
+Logic
+Output
+9.1
+Analysis text parser
+Regex r'(\d+)\s*Years?:?\s*([\d.]+)%' on compounded_sales_growth, profit_growth, CAGR fields.
+Parsed numeric table: company, period, value
+9.2
+Auto pros/cons generator
+Rule engine: 12 pro rules (ROE>20%, FCF positive 5yr, D/E=0, revenue CAGR>15%, etc.) + 12 con rules (D/E>2, FCF negative 3yr, OPM declining, etc.). Confidence score 0–100%.
+pros_cons_generated.csv
+9.3
+Business description tagger
+Classify about_company text into sector tags using keyword matching. Confirm vs sectors.xlsx.
+Tag validation report
+9.4
+Sentiment scorer
+Basic polarity scoring on pros (positive) and cons (negative) text using NLTK SentimentIntensityAnalyzer.
+Sentiment score per entry
+9.5
+CAGR cross-validator
+Compare parsed analysis.xlsx CAGR vs Ratio Engine computed CAGR. Flag >5% divergence.
+cross_validation.csv
+Output
+Detail
+pros_cons_generated.csv
+company_id, type (pro/con), rule_triggered, text, confidence_pct. Auto-fills gaps for 84 companies.
+analysis_parsed.csv
+Structured: company_id, metric_type, period_years, value_pct for all analysis.xlsx rows.
+Module 10: Statistical Analysis & Clustering Module
+Uses scikit-learn for KMeans clustering of companies by financial profile. Computes portfolio-level statistics, correlation matrices, and outlier detection.
+Provides insight into hidden company groupings.
+Sprint: Sprint 5–6 (Days 29–42)
+#
+Feature
+Logic
+Output
+10.1
+KMeans clustering (5 clusters)
+Features: ROE, D/E, Revenue CAGR, FCF CAGR, OPM. StandardScaler + KMeans(n=5). Elbow method to validate k.
+cluster_labels.csv: company_id, cluster_id, cluster_name
+10.2
+Cluster profiling
+Mean/median of each feature per cluster. Assign descriptive labels: High-Quality Growth, Defensive Dividend, Value Cyclicals, Distressed, Emerging Growth.
+Cluster profile table
+10.3
+Correlation matrix
+Pearson correlation of 10 KPIs across all 92 companies × latest year. Heatmap output.
+correlation_heatmap.png
+10.4
+Outlier detection
+Z-score per metric per sector. |Z|>3 → 'Outlier' flag. Company-level outlier report.
+outlier_report.csv
+10.5
+Portfolio statistics
+Distribution of ROE, D/E, P/E across Nifty 100. P10/P25/P50/P75/P90 percentile table.
+portfolio_stats.csv
+Output
+Detail
+cluster_labels.csv
+company_id, cluster_id (0–4), cluster_name, distance_from_centroid
+portfolio_stats.csv
+Metric, P10, P25, P50, P75, P90, Mean, Std for all 92 companies
+outlier_report.csv
+company_id, metric, value, z_score, sector, sector_mean, sector_std

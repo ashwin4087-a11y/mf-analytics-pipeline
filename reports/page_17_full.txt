@@ -1,0 +1,161 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 17
+7. Data Relationships & Entity Map
+Foreign Keys, Join
+Paths & Coverage
+ Matrix
+ 
+7.1 Entity-Relationship Summary
+Parent Table
+Parent Key
+Child Table
+Child Key
+Cardinality
+Join Note
+companies
+id (NSE ticker)
+profitandloss
+company_id
+1 : N
+Up to 15 annual rows per company
+companies
+id
+balancesheet
+company_id
+1 : N
+Up to 15 annual rows per company
+companies
+id
+cashflow
+company_id
+1 : N
+Up to 14 annual rows per company
+companies
+id
+analysis
+company_id
+1 : 1
+Partial — ~8 companies have entries
+companies
+id
+documents
+company_id
+1 : N
+1–20 annual report links per company
+companies
+id
+prosandcons
+company_id
+1 : N
+Partial — ~8 companies with entries
+companies
+id
+sectors
+company_id
+1 : 1
+All 92 companies covered
+companies
+id
+stock_prices
+company_id
+1 : N
+60 monthly rows per company
+companies
+id
+market_cap
+company_id
+1 : N
+6 annual rows (2019–2024)
+companies
+id
+financial_ratios
+company_id
+1 : N
+Up to 14 annual rows per company
+companies
+id
+peer_groups
+company_id
+M : N
+A company can be in multiple groups
+7.2 Dataset Coverage Matrix
+Dataset
+Companies Covered
+Years Available
+Completeness
+Data Source
+companies
+92 / 92 (100%)
+Snapshot only
+Complete
+Screener.in scrape
+profitandloss
+92 / 92
+FY 2010–2024
+~95%
+Screener.in / BSE filings
+balancesheet
+92 / 92
+FY 2010–2024
+~97%
+Screener.in / BSE filings
+cashflow
+92 / 92
+FY 2010–2024
+~91%
+Screener.in / BSE filings
+analysis
+~8 / 92 (9%)
+Multi-period
+Partial
+Screener.in pre-computed metrics
+documents
+~75 / 92 (82%)
+Calendar 2010–24
+Partial
+BSE India Annual Reports portal
+prosandcons
+~8 / 92 (9%)
+Snapshot only
+Partial
+Screener.in qualitative section
+sectors
+92 / 92
+Snapshot
+Complete
+Created — GICS-style manual mapping
+stock_prices
+92 / 92
+Jan 2020–Dec 2024
+Complete
+Created — simulated OHLCV
+market_cap
+92 / 92
+2019–2024
+Complete
+Created — simulated valuation
+financial_ratios
+92 / 92
+FY 2010–2024
+~93%
+Created — computed from raw files
+peer_groups
+46 / 92 (50%)
+Snapshot
+Partial
+Created — manually defined groups
+7.3 Standard Join Pattern — Python / SQL
+Scenario
+Join Logic
+P&L + Balance Sheet for one year
+SELECT p.*, b.borrowings, b.total_assets FROM profitandloss p JOIN balancesheet b USING (company_id, year)
+Full profile with sector
+SELECT c.id, c.company_name, s.broad_sector, s.sub_sector FROM companies c JOIN sectors s ON c.id = s.company_id
+CFO + Net Profit health check
+SELECT p.company_id, p.year, p.net_profit, f.operating_activity FROM profitandloss p JOIN cashflow f USING (company_id, year)
+Valuation multiples with earnings
+SELECT m.*, p.net_profit, p.eps FROM market_cap m JOIN profitandloss p USING (company_id, year)
+Peer group ranking
+SELECT r.company_id, r.return_on_equity_pct, RANK() OVER (PARTITION BY pg.peer_group_name ORDER BY r.return_on_equity_pct DESC) FROM financial_ratios r JOIN peer_groups pg USING (company_id)

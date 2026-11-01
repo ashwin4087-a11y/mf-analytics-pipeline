@@ -1,0 +1,116 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 24
+Module 11: REST API Module
+FastAPI server exposing 16 endpoints. Auto-generates OpenAPI documentation at /docs. All responses are JSON. API is consumed by the Streamlit
+dashboard for real-time data queries.
+Sprint: Sprint 6 (Days 36–42)
+#
+Endpoint
+Method
+Description
+11.1
+  /api/v1/companies
+GET
+List all 92 companies with id, name, sector. Supports ?sector= filter.
+11.2
+  /api/v1/companies/{ticker}
+GET
+Full company profile: KPIs, pros/cons, sector, description.
+11.3
+  /api/v1/companies/{ticker}/pl
+GET
+P&L history for a company. Supports ?from_year= ?to_year= filters.
+11.4
+  /api/v1/companies/{ticker}/bs
+GET
+Balance sheet history. Same year filters.
+11.5
+  /api/v1/companies/{ticker}/cashflow
+GET
+Cash flow history. Same year filters.
+11.6
+  /api/v1/companies/{ticker}/ratios
+GET
+All 14 pre-computed KPIs per year for one company.
+11.7
+  /api/v1/companies/{ticker}/tearsheet
+GET
+Returns pre-generated tearsheet PDF (binary download).
+11.8
+  /api/v1/screener
+GET
+Screener: ?min_roe=&max_de=&sector=&min_cagr= → ranked list.
+11.9
+  /api/v1/sectors
+GET
+List all 11 sectors with company count and median KPIs.
+11.10
+ /api/v1/sectors/{sector}/companies
+GET
+All companies in a sector with KPI summary.
+11.11
+ /api/v1/peers/{group_name}
+GET
+All companies in a peer group with percentile ranks.
+11.12
+ /api/v1/companies/{ticker}/peers/compare
+GET
+Radar data: company vs peer group average for 8 metrics.
+11.13
+ /api/v1/market-cap/{ticker}
+GET
+Historical valuation multiples (P/E, P/B, EV/EBITDA) 2019–2024.
+11.14
+ /api/v1/portfolio/stats
+GET
+Portfolio-level statistics: P10–P90 for all 10 core KPIs.
+11.15
+ /api/v1/companies/{ticker}/documents
+GET
+Annual report links for a company.
+11.16
+ /api/v1/health
+GET
+Server health check. Returns DB row counts and server uptime.
+Output
+Detail
+api/main.py
+FastAPI app. All routes in routers/ directory. One router file per module.
+openapi.json
+Auto-exported OpenAPI 3.0 spec. Import into Postman for API testing.
+Module 12: Testing & Quality Assurance Module
+pytest test suite with 60+ test cases covering: ETL correctness, KPI formula accuracy, API endpoint responses, data quality rule coverage. CI-style: all
+tests must pass before code is merged.
+Sprint: Sprint 6 (Days 36–45)
+#
+Test Category
+Test Cases
+Pass Criterion
+12.1
+ETL Tests
+year_normaliser (20 cases), ticker_normaliser (15 cases), dedup (5 cases), load_audit completeness (5 cases)
+All 45 ETL tests pass
+12.2
+KPI Formula Tests
+ROE with positive equity, ROE with negative equity (None), D/E for debt-free (0), ICR for interest=0 (None), CAGR turnaround flag, OPM cross-check
+All 20 formula tests pass
+12.3
+DQ Rule Tests
+Each of 14 DQ rules triggered on crafted violation records; severity correct
+14/14 rules trigger correctly
+12.4
+API Tests
+/health returns 200; /companies returns 92 records; /screener with valid filters returns ranked list; invalid ticker returns 404
+All 10 API tests pass
+12.5
+Regression Tests
+After any schema change, run full suite. No previously-passing test should fail.
+Zero regressions
+Output
+Detail
+tests/
+pytest test directory. Structured: tests/etl/, tests/kpi/, tests/api/, tests/dq/
+pytest_report.html
+HTML report with pass/fail counts, runtime per test, failure traceback for failed tests

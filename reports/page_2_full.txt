@@ -1,0 +1,111 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 2
+1. Document Control & Classification
+Administrative Record
+Field
+Detail
+Document Title
+Nifty 100 Financial Intelligence Platform — Project Execution Plan
+Document ID
+DAD-PROJ-001  |  Version 1.0
+Classification
+Confidential — Internal Use Only
+Status
+Approved for Distribution
+Project Duration
+45 Calendar Days  |  6 Weekly Sprints  |  3 Buffer Days
+Effective Date
+June 2026
+Owner
+Data Analytics Division — Project Lead
+Distribution
+Data Analyst Team Members (individually assigned)
+Total Pages
+50
+Datasets
+7 Core Datasets + 5 Supplementary Datasets
+Companies
+92 (Nifty 100 Index Constituents)
+KPIs Defined
+50+ Financial Key Performance Indicators
+Currency Standard
+All monetary values in Indian Rupees — Crore (■ Cr) unless stated
+Version History
+Version
+Date
+Change Description
+1.0
+June 2026
+Initial release — full specification for 45-day project
+1.1
+Post-Sprint 1
+Updates based on data quality findings from ETL validation
+1.2
+Post-Sprint 3
+Screener and scoring refinements after testing
+2.0
+Day 45
+Final delivery version — all acceptance criteria verified
+How to Use This Document
+Section
+Pages
+Primary Reader
+Purpose
+1 — Document Control
+2
+All
+Classification, version history, reader guide
+2 — Table of Contents
+3
+All
+Navigation index
+3 — Executive Summary
+4–5
+All
+Platform overview, key metrics, outcomes
+4 — Project Overview
+6–7
+All
+Objectives, scope, stakeholder RACI
+5 — Dataset Catalogue
+8–14
+Data Engineers
+Full data dictionary for all 12 datasets
+6 — Data Relationships
+15
+All
+Entity relationships, join patterns, data gaps
+7 — System Architecture
+16
+All
+Folder structure, layers, data flow
+8–19 — Module Specifications
+17–34
+Analysts
+Feature-by-feature breakdown of all 12 modules
+20 — Sprint Plan & Timeline
+35–40
+All
+Day-by-day tasks, exit criteria for each sprint
+21 — KPI Reference
+41–43
+Analytics
+Formulas, edge cases, benchmarks for 50+ KPIs
+22 — Data Quality Rules
+44
+Data Engineers
+14 validation rules — severity, action, test
+23 — API Specification
+45
+Backend
+Optional FastAPI endpoint definitions
+24 — Risk Register
+46
+Project Lead
+Risks, likelihood, impact, mitigations
+25 — Deliverables Checklist
+47
+All
+What to submit, format, due date, evaluation

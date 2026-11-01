@@ -1,0 +1,167 @@
+{
+  "1788501604303-57986a9b-analysis.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Analysis  |  20 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5"
+    ],
+    "row_count": 21
+  },
+  "1788501604829-ac8c0874-balancesheet.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Balance Sheet  |  1,312 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6",
+      "Unnamed: 7",
+      "Unnamed: 8",
+      "Unnamed: 9",
+      "Unnamed: 10",
+      "Unnamed: 11",
+      "Unnamed: 12"
+    ],
+    "row_count": 1313
+  },
+  "1788501605758-8e951681-cashflow.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Cash Flow  |  1,187 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6"
+    ],
+    "row_count": 1188
+  },
+  "1788501606103-7177b6c2-companies.xlsx": {
+    "columns": [
+      "Mkt Fintech \u2014 Nifty 100  |  Companies  |  92 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6",
+      "Unnamed: 7",
+      "Unnamed: 8",
+      "Unnamed: 9",
+      "Unnamed: 10",
+      "Unnamed: 11"
+    ],
+    "row_count": 93
+  },
+  "1788501606362-ba899c04-documents.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Documents  |  1,585 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3"
+    ],
+    "row_count": 1586
+  },
+  "1788501607124-aad40f4f-profitandloss.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Profit & Loss  |  1,276 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3",
+      "Unnamed: 4",
+      "Unnamed: 5",
+      "Unnamed: 6",
+      "Unnamed: 7",
+      "Unnamed: 8",
+      "Unnamed: 9",
+      "Unnamed: 10",
+      "Unnamed: 11",
+      "Unnamed: 12",
+      "Unnamed: 13",
+      "Unnamed: 14"
+    ],
+    "row_count": 1277
+  },
+  "1788501607452-d6bbe55b-prosandcons.xlsx": {
+    "columns": [
+      "Bluestock Fintech \u2014 Nifty 100  |  Pros & Cons  |  16 records",
+      "Unnamed: 1",
+      "Unnamed: 2",
+      "Unnamed: 3"
+    ],
+    "row_count": 17
+  },
+  "1788501620089-fb3ae469-financial_ratios.xlsx": {
+    "columns": [
+      "id",
+      "company_id",
+      "year",
+      "net_profit_margin_pct",
+      "operating_profit_margin_pct",
+      "return_on_equity_pct",
+      "debt_to_equity",
+      "interest_coverage",
+      "asset_turnover",
+      "free_cash_flow_cr",
+      "capex_cr",
+      "earnings_per_share",
+      "book_value_per_share",
+      "dividend_payout_ratio_pct",
+      "total_debt_cr",
+      "cash_from_operations_cr"
+    ],
+    "row_count": 1184
+  },
+  "1788501620397-69ae3e7f-market_cap.xlsx": {
+    "columns": [
+      "id",
+      "company_id",
+      "year",
+      "market_cap_crore",
+      "enterprise_value_crore",
+      "pe_ratio",
+      "pb_ratio",
+      "ev_ebitda",
+      "dividend_yield_pct"
+    ],
+    "row_count": 552
+  },
+  "1788501620796-5060f580-peer_groups.xlsx": {
+    "columns": [
+      "id",
+      "peer_group_name",
+      "company_id",
+      "is_benchmark"
+    ],
+    "row_count": 56
+  },
+  "1788501621129-8684701e-sectors.xlsx": {
+    "columns": [
+      "id",
+      "company_id",
+      "broad_sector",
+      "sub_sector",
+      "index_weight_pct",
+      "market_cap_category"
+    ],
+    "row_count": 92
+  },
+  "1788501621395-a51977cd-stock_prices.xlsx": {
+    "columns": [
+      "id",
+      "company_id",
+      "date",
+      "open_price",
+      "high_price",
+      "low_price",
+      "close_price",
+      "volume",
+      "adjusted_close"
+    ],
+    "row_count": 5520
+  }
+}

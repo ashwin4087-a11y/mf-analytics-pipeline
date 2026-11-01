@@ -1,0 +1,94 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 32
+18. Acceptance Criteria
+20 Non-Negotiable
+Quality Gates — All
+Must Pass Before
+ Sign-Off
+ 
+Gate
+Area
+Criterion
+Tested By
+AC-01
+Data Coverage
+92 companies present in companies table. No extra or missing tickers.
+SELECT COUNT(*) FROM companies → 92
+AC-02
+Time Coverage
+≥ 90% of companies have ≥ 10 years of P&L, BS, CF records.
+DQ coverage query in load_audit.csv
+AC-03
+Schema Integrity
+All FK relationships intact. PRAGMA foreign_key_check returns 0 rows.
+SQLite FK check command
+AC-04
+KPI Completeness
+financial_ratios table has ≥ 1,100 rows. All 14 KPI columns populated.
+SELECT COUNT(*) FROM financial_ratios
+AC-05
+CAGR Accuracy
+Revenue CAGR for 3 manually-checked companies matches hand-computed Excel value ±0.1%.
+Manual Excel spot check
+AC-06
+ROE Accuracy
+ROE for 5 companies in latest year matches companies.roe_percentage ±5% (allow for version diff).
+Manual comparison
+AC-07
+Screener Accuracy
+Quality preset screener (ROE>15, D/E<1, FCF>0) produces ≥ 10 and ≤ 50 companies.
+Screener run on full DB
+AC-08
+Dashboard Load
+Company Profile screen loads for any of 92 tickers in < 3 seconds on localhost.
+Manual stopwatch test
+AC-09
+Dashboard Export
+CSV download on Screener screen produces well-formed file with correct headers.
+Download and open test
+AC-10
+PDF Quality
+No text overflow, no overlapping pages in any generated report.
+Visual review of 5 random tearsheets
+AC-11
+API Health
+GET /api/v1/health returns HTTP 200 with db_row_counts for all 10 tables.
+curl /api/v1/health
+AC-12
+API Accuracy
+GET /api/v1/companies/TCS/ratios returns rows for ≥ 10 years.
+API response check
+AC-13
+API Screener
+GET /api/v1/screener?min_roe=15&max_de=1 returns consistent result with Module 3 output.
+Response vs Excel comparison
+AC-14
+Peer Coverage
+Peer percentile table populated for all 11 peer groups. All member tickers present.
+SELECT DISTINCT peer_group_name → 11
+AC-15
+Cluster Coverage
+All 92 companies assigned to a cluster (0–4). No nulls in cluster_id column.
+cluster_labels.csv null check
+AC-16
+NLP Coverage
+pros_cons_generated.csv has ≥ 1 pro and ≥ 1 con for every company.
+CSV null check per company_id
+AC-17
+Report Coverage
+92 tearsheet PDFs exist in reports/tearsheets/. Each is ≥ 50KB.
+ls reports/tearsheets/ | wc -l → 92
+AC-18
+Test Coverage
+pytest count shows ≥ 60 tests collected. 0 failures. 0 errors.
+pytest --tb=short output
+AC-19
+DQ Documentation
+validation_failures.csv exists. All rows have company_id, field, issue, severity.
+File presence + column check
+AC-20
+Documentation
+analyst_guide.pdf exists and is ≥ 10 pages. Contains screener and dashboard sections.
+File size and page count check

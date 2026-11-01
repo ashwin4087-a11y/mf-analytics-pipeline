@@ -1,0 +1,94 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 25
+12. 45-Day Sprint Plan
+6 Sprints × 7–8 Days
+— Day-by-Day Task
+Breakdown
+ 
+Sprint
+Days
+Theme
+Modules
+Exit Criteria
+Sprint 1
+Days 01–07
+Data Foundation
+Module 1
+nifty100.db built; all 10 tables loaded; load_audit.csv shows zero CRITICAL failures; validation_failures.csv reviewed and cleared by team lead
+Sprint 2
+Days 08–14
+Ratio Engine
+Module 2
+financial_ratios table populated for 92 × 14yr; 60+ KPIs computed; all 20 KPI formula tests pass; edge case log reviewed
+Sprint 3
+Days 15–21
+Screener & Peers
+Modules 3–4
+6 preset screeners operational; peer percentile table built for all 11 groups; peer comparison Excel exported; all DQ tests pass
+Sprint 4
+Days 22–28
+Dashboard & Valuation
+Modules 5–6
+Streamlit app running on localhost:8501; all 8 screens navigable; valuation_summary.xlsx exported; screener on dashboard functional
+Sprint 5
+Days 29–35
+Intelligence & Reports
+Modules 7–9
+92 company tearsheet PDFs generated; pros_cons_generated.csv complete for all companies; cash flow intelligence Excel complete
+Sprint 6
+Days 36–45
+API, ML & QA
+Modules 10–12
+All 16 API endpoints return correct data; 60+ pytest tests pass; cluster_labels.csv complete; final portfolio PDF generated; sign-off checklist complete
+Sprint 1 — Data Foundation (Days 1–7)
+Day
+Tasks
+Deliverable
+D01
+Set up project directory structure (data/, src/etl/, src/analytics/, src/api/, src/dashboard/, tests/, reports/). Create venv; install all dependencies; configure .env file.
+requirements.txt, .env.template
+D02
+Write Excel loader with header=1 support for all 7 core files. Write normalize_year() and normalize_ticker() functions. Unit tests: 20 cases each.
+etl/loader.py, tests/etl/test_normalise.py
+D03
+Implement schema validator (16 DQ rules). Run against all 7 files. Log failures to validation_failures.csv. Review with team lead.
+etl/validator.py, validation_failures.csv
+D04
+Build SQLite schema (CREATE TABLE statements for 10 tables with FK constraints). Write loader to insert normalised DataFrames.
+db/schema.sql, db/loader.py
+D05
+Load all 5 supplementary files. Run full load for all 12 files. Generate load_audit.csv.
+nifty100.db, load_audit.csv
+D06
+Data quality review: manually check 5 random companies across all time-series tables. Fix any loader bugs. Re-run load.
+DQ review notes in team channel
+D07
+Write 10 SQL exploratory queries (row counts, nulls, year coverage per company). Sprint retrospective. Update task board.
+exploratory_queries.sql, sprint1_retro.md
+Sprint 2 — Ratio Engine (Days 8–14)
+Day
+Tasks
+Deliverable
+D08
+Implement profitability ratios: NPM, OPM, ROE, ROCE. Edge cases: negative equity (None), zero sales (None). Cross-validate OPM vs source.
+analytics/ratios.py
+D09
+Implement leverage + efficiency ratios: D/E (bank carve-out), ICR (debt-free substitution), Asset Turnover. Write tests.
+tests/kpi/test_leverage.py
+D10
+Implement CAGR engine: Revenue CAGR, PAT CAGR, EPS CAGR for 3yr, 5yr, 10yr windows. Turnaround flag logic.
+analytics/cagr.py
+D11
+Implement cash flow KPIs: FCF, CFO Quality Score, CapEx Intensity, FCF Conversion, capital allocation pattern (8 classes).
+analytics/cashflow_kpis.py
+D12
+Populate financial_ratios table in SQLite for all 92 companies × all years. Run validation: compare sample to manual Excel calculations.
+Updated financial_ratios table
+D13
+Implement ROCE for banks/NBFCs: sector-relative approach. Cross-check vs roce_percentage in companies.xlsx. Log anomalies.
+sector_roce_notes.csv
+D14
+Run all 20 KPI formula tests. Fix failures. Write ratio_edge_cases.log. Sprint retrospective.
+All KPI tests green, sprint2_retro.md

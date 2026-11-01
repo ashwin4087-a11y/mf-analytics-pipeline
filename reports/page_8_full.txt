@@ -1,0 +1,147 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 8
+4. Project Overview & Objectives
+Mission, Scope,
+Stakeholders &
+Governance
+ 
+4.1 Mission & Objectives Matrix
+Attribute
+Statement
+Mission
+Build a self-contained, production-grade financial intelligence system enabling analysts to query, screen, score, and compare all 92 Nifty 100 companies using structured fundamental data — without relying on third-party paid platforms.
+Vision
+Become the definitive internal reference for Nifty 100 fundamental analysis — reproducible, auditable, and version-controlled from public financial filings.
+Principle
+Every insight must be traceable to a formula, every formula to a source column, every column to a dataset file. No black-box numbers.
+ID
+Objective
+Success Metric
+Priority
+Sprint
+O-01
+Data Engineering
+All 12 datasets loaded; 0 critical DQ violations
+Critical
+1
+O-02
+KPI Computation
+50+ KPIs for all company-year combinations
+Critical
+2
+O-03
+Investment Screener
+18 filter types; 6 pre-built templates return results
+Critical
+3
+O-04
+Financial Health Scoring
+0–100 score for all 92 companies; correct bands
+Critical
+3
+O-05
+Sector Analytics
+Median KPIs for all 11 sectors; sector ranking
+High
+3
+O-06
+Peer Comparison
+Percentile ranks for all 11 peer groups
+High
+4
+O-07
+Trend & Growth Analytics
+1Y/3Y/5Y/10Y CAGR for revenue, profit, EPS
+High
+4
+O-08
+Cash Flow Intelligence
+Capital allocation matrix for all 92 companies
+High
+4
+O-09
+Dashboard
+Streamlit app — 5 pages functional; no crash
+High
+5
+O-10
+PDF Report Generation
+Company + sector PDFs for all 92 + 11 sectors
+High
+5
+O-11
+Excel Exports
+Screener export, full universe, comparison exports
+Medium
+5
+O-12
+Alerts & Watchlist
+Threshold alerts; YoY deterioration detection
+Medium
+6
+O-13
+Test Coverage
+≥80% unit test coverage across src/
+Critical
+6
+O-14
+Documentation
+README: fresh setup in <30 min; docstrings on all functions
+High
+6
+4.2 Scope Boundaries
+#
+In Scope
+#
+Out of Scope
+S01
+Fundamental analysis — P&L, Balance Sheet, Cash Flow
+X01
+Real-time price feeds or live market data
+S02
+Historical trend analysis — 10–13 years per company
+X02
+Technical analysis (RSI, MACD, Bollinger Bands)
+S03
+50+ financial KPI computation from raw data
+X03
+Machine learning price prediction models
+S04
+Investment screener with 18 configurable filters
+X04
+Options, derivatives, or futures analytics
+S05
+Financial Health Score (0–100) composite model
+X05
+User authentication or multi-tenancy
+S06
+Sector benchmarking across 11 sectors
+X06
+Cloud deployment or CI/CD infrastructure
+S07
+Peer comparison for 11 defined peer groups
+X07
+Insider trading or shareholding pattern data
+S08
+Automated PDF and Excel report generation
+X08
+ESG scoring or sustainability metrics
+S09
+Streamlit dashboard — analyst interface
+X09
+International or cross-market comparison
+S10
+Annual report repository — 1,585 links
+X10
+Portfolio construction or optimisation models
+S11
+Simulated stock price & market cap datasets
+X11
+Earnings call transcripts or news sentiment
+S12
+Rule-based alert system and watchlist
+X12
+Regulatory filing alerts or SEBI announcements
+4.3 Stakeholder Matrix & RACI

@@ -1,0 +1,117 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 9
+Stakeholder
+Role
+Module Ownership
+Engagement
+Data Analyst — ETL
+Data Engineer
+Module 1 (ETL Pipeline)
+Daily — Sprints 1–2
+Data Analyst — Analytics
+KPI Developer
+Modules 2, 5, 6, 7, 8, 9
+Daily — Sprints 2–4
+Data Analyst — Frontend
+Dashboard Builder
+Module 3, 4 UI (Screener page)
+Daily — Sprint 5
+Data Analyst — Reporting
+Report Developer
+Module 10 (PDF/Excel)
+Daily — Sprint 5
+Data Analyst — QA
+Quality Assurance
+Test suite, documentation
+Daily — Sprint 6
+Project Lead
+Coordinator
+All modules — review & integration
+Weekly review meetings
+Module
+ETL Analyst
+Analytics Analyst
+Frontend Analyst
+Reporting Analyst
+QA Analyst
+ETL Pipeline
+R/A
+C
+I
+I
+C
+Financial Ratio Engine
+C
+R/A
+I
+I
+C
+Investment Screener
+I
+R/A
+C
+I
+C
+Health Scoring
+I
+R/A
+C
+I
+C
+Sector Analytics
+I
+R/A
+C
+I
+C
+Peer Comparison
+I
+R/A
+C
+I
+C
+Trend & Growth
+I
+R/A
+C
+I
+C
+Cash Flow Intelligence
+I
+R/A
+C
+I
+C
+Dashboard
+I
+C
+R/A
+C
+C
+PDF / Excel Reports
+I
+C
+C
+R/A
+C
+Alerts & Watchlist
+I
+R
+C
+I
+A
+Full Test Suite
+C
+C
+C
+C
+R/A
+Documentation
+C
+C
+C
+C
+R
+R = Responsible | A = Accountable | C = Consulted | I = Informed

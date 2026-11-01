@@ -1,0 +1,39 @@
+KEY EDA FINDINGS – Bluestock Mutual Fund Analytics
+======================================================================
+
+1. NAV Growth Across Market Cycles: All 40 equity schemes show a clear upward NAV trajectory from 2022-01-03 to 2026-05-29, with visible volatility during the 2024 correction period. [Chart 1]
+
+2. AUM Dominance – SBI Mutual Fund: SBI Mutual Fund consistently holds the highest AUM, peaking at Rs.12.50 Lakh Crore in 2025. [Chart 3]
+
+3. SIP Inflow Peak: Monthly SIP inflows reached an all-time high of Rs.31,002 Crore in 2025-12. [Chart 4]
+
+4. Category Inflow Patterns: The heatmap reveals strong equity inflows in 2024–2025 and periodic outflows in debt categories during rising-rate environments. [Chart 5]
+
+5. Dominant Investor Age Group: '26-35' is the largest age segment, representing 40.7% of unique investors – indicating mutual fund adoption among working-age adults. [Chart 6]
+
+6. Geographic Concentration: 'Madhya Pradesh' is the leading state by SIP investment volume, reflecting the urban-led penetration of SIP investments. [Chart 9]
+
+7. City Tier Distribution: T30 cities account for 66.7% of investors, confirming that mutual fund adoption remains predominantly urban. [Chart 10]
+
+8. Folio Expansion: Total industry folios grew from 13.26 Crore in 2022-01 to 26.12 Crore in 2025-12, reflecting strong new investor participation. [Chart 11]
+
+9. Fund Return Correlation: Top 10 equity funds by AUM show high positive correlations (> 0.8), implying limited diversification benefit within the large-cap equity space. [Chart 12]
+
+10. Sector Allocation: 'Banking' holds the largest cumulative weight across equity fund portfolios, reflecting the benchmark-heavy composition of Indian equity funds. [Chart 13]
+
+11. Risk-Adjusted Leader: 'ICICI Pru Liquid Fund - Regular - Growth' achieves the highest Sharpe ratio of 7.68, offering the best return per unit of risk among all 40 schemes. [Chart 18]
+
+12. Rolling Volatility Spikes: Top-5 equity funds by AUM show pronounced volatility spikes during market stress events, with annualised 30-day vol regularly exceeding 20% in correction phases. [Chart 19]
+
+13. Alpha vs Drawdown: Higher-risk-graded funds tend to cluster in the high-alpha / high-drawdown quadrant, while Low-risk funds exhibit stable but modest alpha – highlighting the classic risk-reward trade-off. [Chart 20]
+
+14. Dominant Payment Mode: 'Net Banking' is the most-used payment channel across all transaction types, reflecting the shift to digital payment infrastructure in retail investing. [Chart 21]
+
+15. Monthly Investment Trends: SIP volumes show a sustained upward trend over time, while Lumpsum and Redemption flows exhibit greater month-to-month variability. [Chart 22]
+
+16. Income-Driven Investment Scale: Investment amounts rise progressively with income bands – investors in the >100L income group invest significantly larger lumpsum amounts, while lower-income bands drive high-volume, low-ticket SIPs. [Chart 23]
+
+17. Concentration in Top Holdings: 'Axis Bank Ltd' leads with Rs.16326 Cr aggregate market value across all fund portfolios, highlighting high concentration risk in index-heavy stocks. [Chart 24]
+
+18. Folio Category Mix: Equity folios dominate and grew from 9.28 Cr to 18.28 Cr, while debt and hybrid folios remained relatively stable – confirming the equity-first preference of new retail investors. [Chart 25]
+

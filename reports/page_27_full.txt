@@ -1,0 +1,195 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 27
+13. KPI Reference — 50+ Financial Metrics
+ Formulas,
+Benchmarks, Edge
+Cases & Warning
+ Flags
+ 
+KPI
+Category
+Formula
+Benchmark
+Edge Case / Warning Flag
+Net Profit Margin
+Profitability
+net_profit / sales × 100
+>10% = good; >20% = excellent
+None if sales=0. Negative allowed.
+Operating Profit Margin
+Profitability
+operating_profit / sales × 100
+>15% = good; >25% = excellent
+Cross-check vs opm_percentage field ±1%.
+EBIT Margin
+Profitability
+(operating_profit − depreciation) / sales × 100
+>12% preferred
+Excludes other_income to get core ops only.
+Return on Equity (ROE)
+Returns
+net_profit / (equity + reserves) × 100
+>15% = good; >20% = excellent
+None if equity+reserves ≤ 0.
+Return on Capital (ROCE)
+Returns
+EBIT / (equity + reserves + borrowings) × 100
+>15% = good; >25% = excellent
+Bank carve-out: use sector-relative benchmark.
+Return on Assets (ROA)
+Returns
+net_profit / total_assets × 100
+>5% = good; >10% = excellent
+None if total_assets = 0.
+Debt-to-Equity (D/E)
+Leverage
+borrowings / (equity + reserves)
+<1.0 = healthy; <0.5 = conservative
+0 = debt-free. Flag >5 for non-financials.
+Interest Coverage (ICR)
+Leverage
+(op_profit + other_income) / interest
+>3× = safe; >5× = strong
+None if interest=0 → display 'Debt Free'. Flag if <1.5×.
+Net Debt
+Leverage
+borrowings − investments − cash
+< 0 = net cash positive
+investments used as liquid asset proxy.
+Net Debt / EBITDA
+Leverage
+net_debt / operating_profit
+<2× = healthy; >4× = stressed
+None if EBITDA < 0.
+Asset Turnover
+Efficiency
+sales / total_assets
+>1× = efficient. Asset-light >2×
+None if total_assets = 0.
+Fixed Asset Turnover
+Efficiency
+sales / fixed_assets
+>3× = good
+None if fixed_assets = 0 (service cos).
+Working Capital Days
+Efficiency
+(other_asset − other_liabilities) / sales × 365
+Lower = better
+>180 days = slow collections flag.
+Inventory Turnover
+Efficiency
+sales / (fixed_assets proxy)
+Sector-dependent
+Proxy only — no raw inventory field.
+Revenue CAGR (3yr)
+Growth
+(sales_t / sales_{t-3})^(1/3) − 1
+>10% = healthy; >20% = fast
+Turnaround flag if base < 0.
+Revenue CAGR (5yr)
+Growth
+(sales_t / sales_{t-5})^(1/5) − 1
+>12% = healthy; >25% = strong
+Turnaround flag if base < 0.
+Revenue CAGR (10yr)
+Growth
+(sales_t / sales_{t-10})^(1/10) − 1
+>10% sustained = excellent
+Turnaround flag. None if <10yr history.
+PAT CAGR (3yr)
+Growth
+(net_profit_t / net_profit_{t-3})^(1/3) − 1
+>15% = healthy; >25% = strong
+Turnaround flag. More volatile than revenue.
+PAT CAGR (5yr)
+Growth
+(net_profit_t / net_profit_{t-5})^(1/5) − 1
+>15% = healthy; >30% = excellent
+Turnaround flag.
+EPS CAGR (5yr)
+Growth
+(eps_t / eps_{t-5})^(1/5) − 1
+>12% = healthy
+Must align with PAT CAGR unless share count changed.
+Free Cash Flow
+Cash Quality
+operating_activity + investing_activity
+> 0 = generating cash
+Negative 3yr consecutive → 'FCF Concern' flag.
+CFO / PAT Ratio
+Cash Quality
+operating_activity / net_profit
+>1.0 = high quality earnings
+<0.5 = accrual risk. None if net_profit = 0.
+CapEx Intensity
+Cash Quality
+abs(investing_activity) / sales × 100
+<3% = asset-light; >8% = capital intensive
+investin_activity proxy — may include non-CapEx items.
+FCF Conversion Rate
+Cash Quality
+FCF / operating_profit × 100
+>60% = efficient; <30% = heavy
+None if operating_profit = 0.
+FCF Yield
+Valuation
+FCF / market_cap_crore × 100
+>3% = attractive
+Requires market_cap table join.
+Price-to-Earnings (P/E)
+Valuation
+market_cap / net_profit
+15–25× = fair for India large caps
+None if net_profit ≤ 0. Compare within sector.
+Price-to-Book (P/B)
+Valuation
+market_cap / (equity + reserves)
+>3× = expensive for value investors
+Varies widely by sector: IT >8×, utilities <2×.
+EV/EBITDA
+Valuation
+enterprise_value / operating_profit
+12–18× = fair for Indian large caps
+None if EBITDA < 0.
+Dividend Yield
+Valuation
+dividend_yield_pct from market_cap table
+>2% = dividend-paying; >4% = high yield
+Requires market_cap table.
+Dividend Payout Ratio
+Profitability
+dividend_payout from P&L table
+30–60% = balanced
+Flag >100% (paying more than earned).
+Book Value Per Share
+Valuation
+(equity + reserves) / (equity_cap / face_value)
+>1 always. Rising trend = good
+Computed — cross-check vs companies.book_value.
+Earnings Per Share (EPS)
+Profitability
+eps from P&L table
+Rising trend preferred
+Dilution risk if equity issuance ongoing.
+Capital Allocation: Reinvestor
+Qualitative
+CFO>0, CFI<0, CFF<0
+Ideal: paying debt + investing from ops
+Pattern: (+, −, −)
+Capital Allocation: Shareholder Returns
+Qualitative
+CFO>0, CFI<0, CFF<0 (dividends)
+Stable mature company
+Pattern: (+, −, −) same as above — sub-classify by CFO/PAT>1
+Capital Allocation: Distress
+Qualitative
+CFO<0, CFF>0
+Raising funds to fund ops — red flag
+Pattern: (−, ?, +)
+Composite Quality Score
+Composite
+0.3×ROE_score + 0.25×FCF_score + 0.25×ROCE_score + 0.20×DE_score
+70–100 = excellent; 40–70 = moderate
+Normalised 0–100 using P10/P90 winsorisation.

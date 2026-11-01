@@ -1,0 +1,150 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 42
+28. Sector Benchmarks & Expected Metric Ranges
+Context for Anomaly
+Detection & Relative
+ Scoring
+ 
+Sector
+ROE Range
+D/E Range
+OPM Range
+P/E Range
+Notes
+Financials (Banks)
+12–22%
+> 5× (normal)
+25–45% NIM proxy
+12–25×
+D/E structurally high — use NIM + ROA for banks instead of OPM
+Financials (NBFC)
+12–20%
+3–8× (normal)
+30–55% NIM proxy
+15–30×
+Higher ROA and ROE expected for consumer finance vs banks
+Information Technology
+25–50%
+0–0.3×
+20–35%
+22–40×
+Asset-light; high ROE; low D/E; premium P/E for growth
+Consumer Staples (FMCG)
+20–45%
+0–0.5×
+15–28%
+40–70×
+Very high P/E; brand moat; consistent margins; low debt
+Healthcare / Pharma
+15–30%
+0–0.8×
+15–25%
+25–45×
+Moderate debt; R&D adds intangible assets; premium for growth
+Energy (Oil & Gas)
+10–18%
+0.5–2×
+8–18%
+8–15×
+Capital intensive; commodity-linked margins; PSU majority
+Energy (Power)
+8–15%
+1–4×
+25–40%
+12–20×
+High D/E normal for regulated utilities; stable margin
+Consumer Discretionary
+10–25%
+0.3–1.5×
+10–20%
+25–50×
+Wide range; auto OEMs have lower OPM than consumer brands
+Materials (Steel)
+10–25%
+0.3–1×
+12–22%
+8–18×
+Cyclical; margins volatile with commodity prices
+Materials (Cement)
+12–22%
+0.3–1×
+18–28%
+18–35×
+Oligopoly; regional pricing power; moderate debt
+Industrials
+12–22%
+0.3–1.5×
+10–20%
+20–35×
+Capital goods order-book driven; L&T sets benchmark
+Conglomerates
+10–20%
+0.5–2×
+8–18%
+15–30×
+Diverse revenue streams; holding company discount applied
+Usage: For relative scoring, normalise KPIs against these sector ranges rather than the universal Nifty 100 range. A D/E of 4× is a CRITICAL flag for
+an IT company but completely normal for a bank. The Ratio Engine uses sectors.broad_sector to select the appropriate benchmark range for each
+metric.
+29. Week-by-Week Communication & Review Plan
+Milestone Reviews,
+Deliverable Handoffs
+& Sign-Off Schedule
+Week
+Days
+Review Meeting
+Deliverables to Share
+Go / No-Go Criteria
+Week 1
+D01–07
+End of D07 — Sprint 1 Review (30 min)
+nifty100.db, load_audit.csv, validation_failures.csv, exploratory_queries.sql
+All 10 tables loaded. Zero CRITICAL DQ failures. Coverage > 90%.
+Week 2
+D08–14
+End of D14 — Sprint 2 Review (45 min)
+financial_ratios table (SQLite export), ratio_edge_cases.log, all KPI tests green
+1,100+ rows in financial_ratios. Formula spot-checks pass. All 20 KPI tests green.
+Week 3
+D15–21
+End of D21 — Sprint 3 Review (45 min)
+screener_output.xlsx (6 presets), peer_comparison.xlsx (11 groups), radar chart samples
+6 screeners operational. 11 peer groups populated. All DQ tests pass.
+Week 4
+D22–28
+End of D28 — Sprint 4 Demo (60 min)
+Live Streamlit dashboard demo, valuation_summary.xlsx
+All 8 screens load without errors. Screener returns correct results. CSV download works.
+Week 5
+D29–35
+End of D35 — Sprint 5 Review (45 min)
+Sample tearsheets (3 companies), pros_cons_generated.csv, cashflow_intelligence.xlsx
+5 tearsheets reviewed: no overflow. NLP coverage > 90%. CF flags spot-checked.
+Week 6
+D36–42
+End of D42 — Sprint 6 Review (60 min)
+API demo (Postman), pytest_report.html, cluster_labels.csv
+16 endpoints live. 60+ tests pass. Cluster labels make business sense (reviewed).
+Final
+D43–45
+D45 — Project Sign-Off (90 min)
+All 23 deliverables, acceptance_checklist.pdf signed
+All 20 acceptance gates pass. Lead signs acceptance_checklist.pdf. Project archived.
+29.1 Daily Stand-Up Format (5 minutes per person)
+Question
+Guidance
+Max Time
+What did I complete yesterday?
+Name the specific deliverable or sub-task completed. Reference the sprint task board item.
+90 seconds
+What will I complete today?
+Commit to a specific deliverable — not vague ('work on module X'). Name the file/function.
+90 seconds
+What is blocking me?
+Only blockers that cannot self-resolve within 2 hours. Escalate to team lead after 2 hours.
+60 seconds
+Anything to share?
+Optional: share a finding, risk spotted, or cross-team dependency discovered. Keep it brief.
+60 seconds

@@ -1,0 +1,34 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 11
+Column
+Type
+Nullable
+Sample (TCS FY23)
+Formula / Notes
+profit_before_tax
+NUMERIC
+Yes
+46,534
+PBT = EBITDA + other_income − interest − D&A. ■ Crore.
+tax_percentage
+NUMERIC
+Yes
+25.0
+Effective tax rate %. Verify: (PBT − PAT) / PBT × 100.
+net_profit
+NUMERIC
+Yes
+34,990
+PAT. Can be negative. ■ Crore.
+eps
+NUMERIC
+Yes
+95.30
+Earnings Per Share in ■. Must be > 0 if net_profit > 0.
+dividend_payout
+NUMERIC
+Yes
+45.0
+Dividend payout ratio %. Can exceed 100% in low-profit years.

@@ -1,0 +1,124 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 43
+Appendix A — Dataset File Checksums & Version Control
+ File Integrity
+Reference for Source
+ Data
+ 
+File
+Size (approx)
+Rows
+SHA-256 (run at project start)
+Notes
+companies.xlsx
+~50 KB
+92
+Run: sha256sum data/raw/companies.xlsx
+Core reference — never modify
+profitandloss.xlsx
+~180 KB
+1,276
+Run: sha256sum data/raw/profitandloss.xlsx
+Core time-series — never modify
+balancesheet.xlsx
+~190 KB
+1,312
+Run: sha256sum data/raw/balancesheet.xlsx
+Core time-series — never modify
+cashflow.xlsx
+~130 KB
+1,187
+Run: sha256sum data/raw/cashflow.xlsx
+Core time-series — never modify
+analysis.xlsx
+~20 KB
+20
+Run: sha256sum data/raw/analysis.xlsx
+Partial coverage — never modify
+documents.xlsx
+~200 KB
+1,585
+Run: sha256sum data/raw/documents.xlsx
+URL repository — never modify
+prosandcons.xlsx
+~15 KB
+16
+Run: sha256sum data/raw/prosandcons.xlsx
+Partial coverage — never modify
+sectors.xlsx
+~20 KB
+92
+Run: sha256sum data/supporting/sectors.xlsx
+Created — update if sector changes
+stock_prices.xlsx
+~400 KB
+5,520
+Run: sha256sum data/supporting/stock_prices.xlsx
+Simulated — label in dashboard
+market_cap.xlsx
+~60 KB
+552
+Run: sha256sum data/supporting/market_cap.xlsx
+Simulated — label in dashboard
+financial_ratios.xlsx
+~160 KB
+1,184
+Run: sha256sum data/supporting/financial_ratios.xlsx
+Computed — regenerate from DB
+peer_groups.xlsx
+~15 KB
+56
+Run: sha256sum data/supporting/peer_groups.xlsx
+Created — update if groups change
+Appendix B — Contact & Escalation Matrix
+Role
+Responsibility
+Response SLA
+Escalation Path
+Team Lead / Project Manager
+Sprint planning, risk decisions, final sign-off on all deliverables
+Same day
+—
+Data Engineer
+ETL module (Module 1), database schema, DQ rules, pipeline reliability
+4 hours for CRITICAL DQ failures
+Escalate to Team Lead after 2hr block
+Analytics Engineer
+Ratio Engine (Module 2), Screener (Module 3), Peer Engine (Module 4)
+Same sprint day
+Escalate to Team Lead for business logic decisions
+Dashboard Developer
+Streamlit app (Module 5), chart design, UX
+Same sprint day
+Escalate for data availability issues → Data Engineer
+API Developer
+FastAPI server (Module 11), OpenAPI docs, Postman collection
+Same sprint day
+Escalate for DB access issues → Data Engineer
+QA / Testing
+Test suite (Module 12), acceptance criteria verification, sign-off checklist
+24hr for test failures
+Escalate to Team Lead for acceptance gate failures
+Document Sign-Off
+Role
+Name
+Signature
+Date
+Project Manager / Team Lead
+_________________________
+_____________
+Data Engineering Lead
+_________________________
+_____________
+Analytics Lead
+_________________________
+_____________
+QA Lead
+_________________________
+_____________
+This document is CONFIDENTIAL and intended solely for the internal project team. No part of this document may be reproduced or shared externally without
+written approval from the Project Manager. Version 1.0 | Prepared for: Data Analytics Platform Initiative | 45-Day Execution Plan | All monetary figures in ■ Crore
+ unless otherwise stated.
+ 

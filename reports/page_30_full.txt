@@ -1,0 +1,73 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 30
+16. Risk Register
+12 Project Risks —
+Likelihood, Impact &
+Mitigation Plan
+Risk ID
+Risk
+Likelihood
+Impact
+Mitigation Strategy
+R-01
+Missing years of data for some companies (coverage < 5yr)
+High
+Medium
+DQ-16 flags companies with < 5yr. Exclude from CAGR. Supplement with public filings if needed.
+R-02
+BSE Annual Report URLs returning 404 (link decay)
+High
+Low
+DQ-13 validates URLs on load. Log failures. Dashboard shows 'Report unavailable' gracefully.
+R-03
+analysis.xlsx text parsing fails for new formats
+Medium
+Medium
+Regex tested for 5 format variants. Unknown formats logged to parse_failures.csv for manual fix.
+R-04
+Bank / NBFC D/E misclassification skews screener results
+Medium
+High
+sectors.broad_sector used to carve out Financials from D/E filter. Tested on 19 financial companies.
+R-05
+Negative equity companies breaking ROE formula
+Medium
+High
+ROE = None if equity+reserves ≤ 0. Logged. Excluded from screener ROE filter.
+R-06
+Simulated stock_prices / market_cap values cause incorrect real conclusions
+Low
+High
+All simulated datasets are clearly labelled SIMULATED in column comments and dashboard tooltips.
+R-07
+CAGR turnaround flag not applied → misleading growth metrics
+Low
+High
+CAGR engine explicitly checks base year sign. Turnaround flag stored in ratio column alongside CAGR.
+R-08
+ReportLab LayoutError on very long text cells overflowing frames
+Medium
+Medium
+All tables use WORDWRAP; cells > 200 chars are truncated with ellipsis. Tested on worst-case cells.
+R-09
+Streamlit slows down with full 92-company dataset on low-spec hardware
+Low
+Medium
+SQLite queries are cached with @st.cache_data (TTL=600s). Max screener result set = 50 rows.
+R-10
+Peer group coverage is partial (46/92 companies)
+Medium
+Medium
+Peer module gracefully handles companies not in any group: returns 'No peer group assigned'.
+R-11
+pros/cons auto-generation produces low-confidence or incorrect flags
+Medium
+Low
+Confidence score displayed alongside auto-generated entries. Threshold: only show if confidence > 60%.
+R-12
+FastAPI / Uvicorn port conflict on analyst machine
+Low
+Low
+Default port 8000. .env file contains PORT variable. README documents port change procedure.

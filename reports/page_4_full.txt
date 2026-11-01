@@ -1,0 +1,133 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 4
+Table of Contents
+Section Title
+Pg
+1
+Document Control & Classification
+2
+2
+Table of Contents
+3
+3
+Executive Summary
+4
+4
+Project Overview & Objectives
+6
+4.1
+Mission & Objectives Matrix
+6
+4.2
+Scope Boundaries
+6
+4.3
+Stakeholder Matrix & RACI
+7
+5
+Dataset Catalogue — Core Datasets
+8
+5.1
+companies.xlsx
+8
+5.2
+profitandloss.xlsx
+9
+5.3
+balancesheet.xlsx
+10
+5.4
+cashflow.xlsx
+11
+5.5
+analysis.xlsx
+11
+5.6
+documents.xlsx
+12
+5.7
+prosandcons.xlsx
+12
+6
+Supplementary Datasets
+13
+6.1–6.5
+sectors / stock_prices / market_cap / financial_ratios / peer_groups
+13
+7
+Data Relationships & Entity Map
+15
+8
+System Architecture
+16
+9
+Module 1 — Data Engineering & ETL Pipeline
+17
+10
+Module 2 — Financial Ratio Engine (50+ KPIs)
+19
+11
+Module 3 — Company Intelligence Dashboard
+22
+12
+Module 4 — Investment Screener
+23
+13
+Module 5 — Financial Health Scoring Model
+25
+14
+Module 6 — Sector Analytics
+27
+15
+Module 7 — Cash Flow Intelligence
+29
+16
+Module 8 — Trend & Growth Analytics
+30
+17
+Module 9 — Peer Comparison Engine
+31
+18
+Module 10 — Reporting & Export Engine
+32
+19
+Module 11 — Document Intelligence Repository
+33
+20
+Module 12 — Alerts & Watchlist
+34
+21
+45-Day Sprint Plan & Timeline
+35
+21.1
+Sprint 1 — Foundation & Data Engineering
+35
+21.2
+Sprint 2 — Financial Ratio Engine
+36
+21.3
+Sprint 3 — Screener, Scoring & Sector Analytics
+37
+21.4
+Sprint 4 — Peer, Trend, Cash Flow & Documents
+38
+21.5
+Sprint 5 — Dashboard & Reporting
+39
+21.6
+Sprint 6 — Testing, Documentation & Delivery
+40
+22
+KPI Definitions & Business Logic
+41
+23
+Data Quality & Validation Rules
+44
+24
+API & Service Layer Specification
+45
+25
+Risk Register
+46

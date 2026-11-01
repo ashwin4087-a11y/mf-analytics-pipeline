@@ -1,0 +1,66 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 36
+21. Environment Setup & Quick-Start Guide
+From Clone to
+Running App in Under
+ 30 Minutes
+ 
+Step
+Command / Action
+Expected Output
+1. Clone / unzip project
+unzip nifty100_project.zip -d nifty100/
+Project directory created with data/, src/, tests/, config/
+2. Create virtual environment
+python3 -m venv .venv && source .venv/bin/activate
+(.venv) prompt in terminal
+3. Install dependencies
+pip install -r requirements.txt
+All 20 libraries installed; no errors
+4. Configure environment
+cp config/.env.template .env && nano .env
+Set DB_PATH=data/nifty100.db; PORT=8000; LOG_LEVEL=INFO
+5. Build database (ETL)
+python src/etl/loader.py (or: make load)
+nifty100.db created; load_audit.csv shows 12 files loaded
+6. Run KPI computation
+python src/analytics/ratios.py (or: make ratios)
+financial_ratios table populated; 1,100+ rows
+7. Run test suite
+pytest tests/ --html=reports/pytest_report.html (or: make test)
+60+ tests collected; 0 failures
+8. Generate PDF reports
+python src/reports/portfolio_report.py (or: make report)
+reports/tearsheets/ populated with 92 PDFs
+9. Start Streamlit dashboard
+streamlit run src/dashboard/app.py (or: make dashboard)
+Browser opens at http://localhost:8501
+10. Start REST API
+uvicorn src.api.main:app --port 8000 (or: make api)
+API running at http://localhost:8000/docs
+Makefile Target
+What it does
+When to use
+make load
+Runs ETL: loads all 12 files into nifty100.db. Re-runnable (idempotent).
+Day 1 and after any source file update
+make ratios
+Runs Ratio Engine: populates financial_ratios table.
+After make load. Re-run after any KPI formula change.
+make test
+Runs full pytest suite. Generates HTML report.
+Before every commit. Must be 0 failures.
+make report
+Generates all PDF reports: 92 tearsheets + 11 sector + 1 portfolio.
+Sprint 5+. Run once a week for fresh reports.
+make dashboard
+Starts Streamlit on port 8501.
+Day-to-day analytics work.
+make api
+Starts FastAPI/Uvicorn on port 8000.
+Sprint 6+. When dashboard needs live API.
+make clean
+Deletes .pyc files, __pycache__, and test artifacts (NOT the database).
+Before packaging final deliverables.

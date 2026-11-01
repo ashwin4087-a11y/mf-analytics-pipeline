@@ -1,0 +1,94 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 28
+14. Data Quality Rules
+16 Validation Rules —
+Applied at ETL Load
+ Time
+ 
+Rule ID
+Rule Name
+Condition
+Severity
+Action
+DQ-01
+Company PK Uniqueness
+len(companies) == companies.id.nunique()
+CRITICAL
+Halt load. Investigate duplicate ticker.
+DQ-02
+Annual PK Uniqueness
+No duplicate (company_id, year) in P&L, BS, CF tables
+CRITICAL
+Deduplicate: keep last occurrence. Log all duplicates.
+DQ-03
+FK Integrity
+All company_id in child tables exist in companies.id
+CRITICAL
+Reject orphan rows. Log to validation_failures.csv.
+DQ-04
+Balance Sheet Balance
+|total_assets − total_liabilities| / total_assets < 0.01
+WARNING
+Flag row. Do not reject. Analyst review required.
+DQ-05
+OPM Cross-Check
+|opm_percentage − (op_profit/sales×100)| < 1.0
+WARNING
+Flag row. Use computed OPM in Ratio Engine; keep source for display.
+DQ-06
+Positive Sales
+sales > 0 for all non-bank companies
+WARNING
+Flag rows with sales ≤ 0. Exclude from growth CAGR.
+DQ-07
+Year Format
+After normalize_year(), all values match r'^\d{4}-\d{2}$'
+CRITICAL
+Reject row if unparseable. Log raw value.
+DQ-08
+Ticker Format
+company_id = company_id.strip().upper(). Length: 2–12 chars.
+CRITICAL
+Normalise silently. If length out of range, reject.
+DQ-09
+Net Cash Check
+|net_cash_flow − (CFO+CFI+CFF)| ≤ 10 (■ Cr tolerance)
+WARNING
+Flag and compute net_cash_flow from components if mismatch.
+DQ-10
+Non-Negative Fixed Assets
+fixed_assets ≥ 0
+WARNING
+Negative fixed_assets → coerce to 0 and log.
+DQ-11
+Tax Rate Range
+0 ≤ tax_percentage ≤ 60
+WARNING
+Flag out-of-range. Can indicate one-off deferred tax reversal.
+DQ-12
+Dividend Payout Cap
+dividend_payout ≤ 200 (pct)
+WARNING
+Flag >200% as likely data entry error. Analyst confirm.
+DQ-13
+URL Validity (documents)
+requests.head(Annual_Report).status_code == 200
+WARNING
+Log 404 URLs. Do not reject row — URL decay expected over time.
+DQ-14
+EPS Sign Consistency
+eps > 0 if net_profit > 0
+WARNING
+Flag mismatch (may indicate adjustments). Use net_profit/shares.
+DQ-15
+BSE/ASE Balance (ext.)
+total_liabilities == total_assets (strict, after DQ-04 flag)
+INFO
+Informational counter. Flag in load_audit only.
+DQ-16
+Coverage Check
+Each company has ≥ 5 years of P&L, BS, CF records
+WARNING
+Flag companies with < 5yr history. Exclude from CAGR if < 3yr.

@@ -1,0 +1,170 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 12
+5.3 balancesheet.xlsx — Annual Balance Sheet
+Column
+Type
+Nullable
+Sample (ABB 2024)
+Formula / Notes
+id
+INTEGER
+No
+136
+Row ID.
+company_id
+VARCHAR
+No
+ABB
+FK → companies.id.
+year
+VARCHAR
+No
+Mar-24
+Standardise to YYYY-MM.
+equity_capital
+NUMERIC
+No
+21
+Paid-up share capital. Small for large caps. ■ Crore.
+reserves
+NUMERIC
+Yes
+626
+Reserves & surplus. Total Equity = equity_capital + reserves.
+borrowings
+NUMERIC
+Yes
+0
+Total debt (short + long term). 0 = debt-free. ■ Crore.
+other_liabilities
+NUMERIC
+Yes
+260
+Trade payables + other current liabilities. Proxy for CL in ROCE. ■ Crore.
+total_liabilities
+NUMERIC
+No
+907
+Sum of equity + all liabilities. Must equal total_assets ±1%.
+fixed_assets
+NUMERIC
+Yes
+109
+Net fixed assets (after D&A). ■ Crore.
+cwip
+NUMERIC
+Yes
+1
+Capital Work In Progress. Add to fixed_assets for gross block proxy.
+investments
+NUMERIC
+Yes
+0
+Long-term investments and securities. Used as liquid proxy for net debt.
+other_asset
+NUMERIC
+Yes
+798
+Current assets + other assets. Catch-all non-fixed.
+total_assets
+NUMERIC
+No
+907
+Sum of all asset-side items. Must equal total_liabilities ±tolerance.
+5.4 cashflow.xlsx — Annual Cash Flow Statements
+Column
+Type
+Sign Convention
+Healthy Signal
+Notes
+id
+INTEGER
+—
+—
+Row ID.
+company_id
+VARCHAR
+—
+—
+FK → companies.id.
+year
+VARCHAR
+—
+—
+Standardise to YYYY-MM.
+operating_activity
+NUMERIC
+Positive = good
+CFO > 0 consistently
+Cash generated from core operations. Primary health indicator. ■ Crore.
+investing_activity
+NUMERIC
+Negative = normal
+Negative = investing in growth
+Cash used for CapEx, acquisitions, investments. ■ Crore.
+financing_activity
+NUMERIC
+Variable
+Negative = debt repayment / dividends
+Debt raise/repay, equity issuance, dividends paid. ■ Crore.
+net_cash_flow
+NUMERIC
+Pos = cash grew
+Positive preferred
+= CFO + CFI + CFF. Validate: matches sum ±10 Crore. ■ Crore.
+5.5 analysis.xlsx — Pre-Computed Growth Metrics (Partial Coverage)
+Column
+Type
+Sample Value
+Parsing Logic
+Usage
+id
+INTEGER
+1
+Direct int cast
+Row ID.
+company_id
+VARCHAR
+HDFCBANK
+Normalise ticker
+FK → companies.id.
+compounded_sales_growth
+TEXT
+10 Years: 21%
+Regex: r'(\d+)\s*Years?:?\s*([\d.]+)%' → (10, 21.0)
+Display + cross-check after parsing
+compounded_profit_growth
+TEXT
+5 Years:  6%
+Same pattern
+Display + cross-check
+stock_price_cagr
+TEXT
+10 Years: 15%
+Same pattern
+Display only — compute from market_cap dataset
+roe
+TEXT
+10 Years: 17%
+Same pattern
+Display only — use Ratio Engine ROE for analytics
+Coverage gap: Only ~8 companies have entries. Compute growth metrics for all 92 via the Ratio Engine (Sprint 2). Use analysis.xlsx values only for
+display cross-check.
+5.6 documents.xlsx — Annual Report Repository
+Column
+Type
+Nullable
+Sample Value
+Notes
+id
+INTEGER
+No
+1
+Row ID.
+company_id
+VARCHAR
+No
+ABB
+FK → companies.id.

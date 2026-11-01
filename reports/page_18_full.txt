@@ -1,0 +1,126 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 18
+8. System Architecture
+7-Layer Data Platform
+with 12 Analytical
+Modules
+ 
+Layer
+Layer Name
+Components
+Technology
+L1
+Raw Data Ingestion
+Excel loader, URL validator, schema validator
+Python — pandas, openpyxl, requests
+L2
+ETL & Normalisation
+Year normaliser, ticker normaliser, dedup engine
+Python — pandas, custom ETL modules
+L3
+Persistent Storage
+SQLite database (10 tables) — core + supporting
+SQLite 3.x — single-file, zero-config
+L4
+Analytics Engine
+Ratio engine, screener, comparator, capital classifier
+Python — pandas, NumPy, scipy.stats
+L5
+Intelligence Layer
+Peer percentiles, health scorer, NLP summarizer
+Python — scikit-learn, regex, NLTK
+L6
+Reporting Layer
+PDF reports, Excel exports, chart generation
+ReportLab, openpyxl, matplotlib, Plotly
+L7
+Dashboard & API
+Streamlit app (8 screens), REST API (16 endpoints)
+Streamlit, FastAPI, Uvicorn
+8.1 Technology Stack
+Category
+Library / Tool
+Version
+Purpose
+Data
+pandas
+≥ 2.0
+DataFrame operations, Excel read/write, pivot tables
+Data
+NumPy
+≥ 1.24
+Vectorised KPI computation, growth rate arrays
+Data
+openpyxl
+≥ 3.1
+Read .xlsx files with header=1 for core datasets
+Database
+SQLite
+3.x
+Single-file relational store; zero server overhead
+Analytics
+scipy
+≥ 1.11
+Statistical distributions, hypothesis tests (t-test, Mann-Whitney)
+Analytics
+scikit-learn
+≥ 1.3
+KMeans clustering, percentile ranking, scaler
+Visualisation
+matplotlib
+≥ 3.7
+Static charts for PDF reports
+Visualisation
+Plotly
+≥ 5.18
+Interactive charts for Streamlit dashboard
+Dashboard
+Streamlit
+≥ 1.30
+Multi-page web dashboard — no frontend code needed
+API
+FastAPI
+≥ 0.110
+REST API server with OpenAPI docs auto-generated
+API
+Uvicorn
+≥ 0.27
+ASGI server to run FastAPI
+PDF
+ReportLab
+≥ 4.1
+PDF document generation (all reports)
+NLP
+NLTK
+≥ 3.8
+Text tokenisation for qualitative analysis + pros/cons generation
+NLP
+regex
+stdlib
+Pattern extraction from analysis.xlsx text fields
+Testing
+pytest
+≥ 7.4
+Unit tests for ETL, KPI formulas, edge cases
+Dev
+Jupyter
+≥ 7.0
+Exploratory analysis notebook (not in production path)
+Dev
+black
+≥ 24.0
+Code formatting — PEP8 compliance
+Dev
+ruff
+≥ 0.4
+Linting — style and import checks
+Dev
+pre-commit
+≥ 3.7
+Git hooks: black + ruff run before every commit
+Env
+python-dotenv
+≥ 1.0
+Config via .env file — paths, thresholds, flags

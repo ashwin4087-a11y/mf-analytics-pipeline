@@ -1,0 +1,468 @@
+{
+  "tables": {
+    "financial_ratios": 1161,
+    "sqlite_sequence": 1
+  },
+  "financial_ratios_schema": [
+    {
+      "cid": 0,
+      "name": "id",
+      "type": "INTEGER",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 1
+    },
+    {
+      "cid": 1,
+      "name": "company_id",
+      "type": "TEXT",
+      "notnull": 1,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 2,
+      "name": "year",
+      "type": "TEXT",
+      "notnull": 1,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 3,
+      "name": "net_profit_margin_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 4,
+      "name": "operating_profit_margin_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 5,
+      "name": "return_on_equity_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 6,
+      "name": "return_on_capital_employed_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 7,
+      "name": "return_on_assets_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 8,
+      "name": "debt_to_equity",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 9,
+      "name": "high_leverage_flag",
+      "type": "INTEGER",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 10,
+      "name": "interest_coverage",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 11,
+      "name": "icr_label",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 12,
+      "name": "icr_warning_flag",
+      "type": "INTEGER",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 13,
+      "name": "net_debt_cr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 14,
+      "name": "asset_turnover",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 15,
+      "name": "free_cash_flow_cr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 16,
+      "name": "capex_cr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 17,
+      "name": "cash_from_operations_cr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 18,
+      "name": "cfo_quality_ratio",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 19,
+      "name": "cfo_quality_label",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 20,
+      "name": "capex_intensity_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 21,
+      "name": "capex_intensity_label",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 22,
+      "name": "fcf_conversion_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 23,
+      "name": "earnings_per_share",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 24,
+      "name": "book_value_per_share",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 25,
+      "name": "dividend_payout_ratio_pct",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 26,
+      "name": "total_debt_cr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 27,
+      "name": "revenue_cagr_3yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 28,
+      "name": "revenue_cagr_3yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 29,
+      "name": "revenue_cagr_5yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 30,
+      "name": "revenue_cagr_5yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 31,
+      "name": "revenue_cagr_10yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 32,
+      "name": "revenue_cagr_10yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 33,
+      "name": "pat_cagr_3yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 34,
+      "name": "pat_cagr_3yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 35,
+      "name": "pat_cagr_5yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 36,
+      "name": "pat_cagr_5yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 37,
+      "name": "pat_cagr_10yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 38,
+      "name": "pat_cagr_10yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 39,
+      "name": "eps_cagr_3yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 40,
+      "name": "eps_cagr_3yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 41,
+      "name": "eps_cagr_5yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 42,
+      "name": "eps_cagr_5yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 43,
+      "name": "eps_cagr_10yr",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 44,
+      "name": "eps_cagr_10yr_flag",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    {
+      "cid": 45,
+      "name": "composite_quality_score",
+      "type": "REAL",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    }
+  ],
+  "financial_ratios_sample": {
+    "id": 1,
+    "company_id": "INDIGO",
+    "year": "2024-03",
+    "net_profit_margin_pct": 11.852722628584697,
+    "operating_profit_margin_pct": 76.29890862649484,
+    "return_on_equity_pct": 892.568306010929,
+    "return_on_capital_employed_pct": 1112.5536480686696,
+    "return_on_assets_pct": 668.3306055646481,
+    "debt_to_equity": 0.018579234972677595,
+    "high_leverage_flag": 0,
+    "interest_coverage": 22.612639724849526,
+    "icr_label": null,
+    "icr_warning_flag": 0,
+    "net_debt_cr": -171.0,
+    "asset_turnover": 56.38625204582652,
+    "free_cash_flow_cr": 9424.0,
+    "capex_cr": 11759.0,
+    "cash_from_operations_cr": 21183.0,
+    "cfo_quality_ratio": -14.344662971577204,
+    "cfo_quality_label": "Accrual Risk",
+    "capex_intensity_pct": 17.065772669220944,
+    "capex_intensity_label": "Capital Intensive",
+    "fcf_conversion_pct": 17.92555113841706,
+    "earnings_per_share": 212.0,
+    "book_value_per_share": 1.9062,
+    "dividend_payout_ratio_pct": 0.0,
+    "total_debt_cr": 17.0,
+    "revenue_cagr_3yr": 67.58091776468258,
+    "revenue_cagr_3yr_flag": null,
+    "revenue_cagr_5yr": 19.313355125806165,
+    "revenue_cagr_5yr_flag": null,
+    "revenue_cagr_10yr": 20.01227897172877,
+    "revenue_cagr_10yr_flag": null,
+    "pat_cagr_3yr": null,
+    "pat_cagr_3yr_flag": "TURNAROUND",
+    "pat_cagr_5yr": 120.69250867467933,
+    "pat_cagr_5yr_flag": null,
+    "pat_cagr_10yr": 32.9316579498421,
+    "pat_cagr_10yr_flag": null,
+    "eps_cagr_3yr": null,
+    "eps_cagr_3yr_flag": "TURNAROUND",
+    "eps_cagr_5yr": 121.23568222761168,
+    "eps_cagr_5yr_flag": null,
+    "eps_cagr_10yr": -34.87773528813343,
+    "eps_cagr_10yr_flag": null,
+    "composite_quality_score": 61.73919643491868
+  },
+  "available_years": [
+    "2011-03",
+    "2011-09",
+    "2012-03",
+    "2012-12",
+    "2013-03",
+    "2013-06",
+    "2013-12",
+    "2014-03",
+    "2014-06",
+    "2014-09",
+    "2014-12",
+    "2015-03",
+    "2015-06",
+    "2015-09",
+    "2015-12",
+    "2016-03",
+    "2016-09",
+    "2016-12",
+    "2017-03",
+    "2017-09",
+    "2017-12",
+    "2018-03",
+    "2018-09",
+    "2018-12",
+    "2019-03",
+    "2019-09",
+    "2019-12",
+    "2020-03",
+    "2020-09",
+    "2020-12",
+    "2021-03",
+    "2021-09",
+    "2021-12",
+    "2022-03",
+    "2022-09",
+    "2022-12",
+    "2023-03",
+    "2023-09",
+    "2023-12",
+    "2024-03",
+    "2024-09"
+  ],
+  "peer_groups_counts": "peer_groups table not in DB"
+}

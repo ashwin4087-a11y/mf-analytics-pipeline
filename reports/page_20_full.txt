@@ -1,0 +1,84 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 20
+Module 3: Company Screener & Filter Engine
+Multi-criteria stock screener with 15+ filterable metrics. Produces ranked result sets. Analyst configures thresholds via YAML config; no code changes
+needed to add new screening presets.
+Sprint: Sprint 3 (Days 15–21)
+#
+Feature
+Criteria / Logic
+Output
+3.1
+Preset screeners (6 templates)
+Quality: ROE>15%, D/E<1, FCF>0. Value: P/E<20, P/B<3. Growth: PAT CAGR >20% 5yr. Dividend: Yield>2%. Momentum: Revenue CAGR >15% 5yr. Debt-Free: borrowings=0
+Ranked company list
+3.2
+Custom filter builder
+Analyst defines thresholds per metric in YAML config (screener_config.yaml)
+Configurable
+3.3
+Ranking engine
+RANK() OVER sector partition on composite score (50% profitability, 30% growth, 20% valuation)
+Score 0–100
+3.4
+Sector-relative screener
+Same thresholds normalised within broad_sector; flags outliers (>2σ or bottom decile)
+Peer-adjusted rank
+3.5
+Screener export (Excel + CSV)
+Top-N results with all KPIs; sortable, formatted
+screener_output.xlsx
+3.6
+Multi-year trend filter
+Filter companies where metric improved consecutively for N years
+Trend table
+Output
+Detail
+screener_output.xlsx
+Top results for each preset with 20+ KPIs displayed, colour-coded by threshold
+screener_config.yaml
+All screening thresholds; analysts edit this file to create custom screens
+screener API endpoint
+GET /api/v1/screener?min_roe=15&max_de=1&sector=IT → JSON response
+Module 4: Peer Comparison Engine
+Compares companies within their peer group (from peer_groups.xlsx) across 20 metrics. Computes within-group percentile rank for every metric.
+Produces radar charts and comparison tables.
+Sprint: Sprint 3 (Days 15–21)
+#
+Feature
+Logic
+Output
+4.1
+Intra-group percentile rank
+PERCENT_RANK() OVER (PARTITION BY peer_group ORDER BY metric)
+Rank 0–1 per metric
+4.2
+Multi-metric radar chart
+8 axes: ROE, ROCE, NPM, D/E, FCF, PAT CAGR, Revenue CAGR, EPS CAGR
+Plotly radar / matplotlib polar
+4.3
+Side-by-side comparison table
+Up to 5 companies: all 14 ratios, 5-year CAGR, capital allocation pattern
+Formatted HTML + PDF
+4.4
+Benchmark gap analysis
+Metric_value vs benchmark_company in peer group; gap in absolute & pct
+Heatmap: green=above bench, red=below
+4.5
+Best-in-class detection
+Company in top quartile (≥75th pctile) for ≥6 of 10 metrics → 'Best in Class' badge
+Badge table
+4.6
+Weak company detection
+Bottom quartile (≤25th pctile) for ≥4 of 10 metrics → 'Watch List' flag
+Flag list
+Output
+Detail
+peer_comparison.xlsx
+One sheet per peer group; 20 metrics, colour-coded percentile cells
+radar_charts/
+One radar PNG per company showing performance vs peer group average
+peer_percentiles table
+SQLite: company_id, peer_group, metric, value, percentile_rank, year

@@ -1,0 +1,78 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 33
+19. Project Directory Structure
+Standard Layout — All
+Code, Data, Reports &
+ Tests
+ 
+Path
+Type
+Contents
+data/raw/
+Directory
+7 core Excel files (READ ONLY). Never modify.
+data/supporting/
+Directory
+5 supplementary Excel files.
+data/nifty100.db
+SQLite
+Primary database. All 10 tables.
+src/etl/
+Directory
+loader.py, validator.py, normaliser.py, schema.sql
+src/analytics/
+Directory
+ratios.py, cagr.py, cashflow_kpis.py, screener/engine.py, peer.py, clustering.py
+src/nlp/
+Directory
+parser.py (analysis.xlsx), pros_cons_generator.py
+src/dashboard/
+Directory
+app.py, pages/ (01–08), utils/charts.py, utils/db.py
+src/api/
+Directory
+main.py, routers/ (companies, screener, peers, sectors, reports, health)
+src/reports/
+Directory
+tearsheet.py, sector_report.py, portfolio_report.py, screener_report.py
+tests/
+Directory
+etl/, kpi/, api/, dq/ — 60+ pytest test files
+config/
+Directory
+screener_config.yaml, .env.template, logging_config.yaml
+reports/tearsheets/
+Directory
+92 company tearsheet PDFs
+reports/sector/
+Directory
+11 sector PDFs
+reports/portfolio/
+Directory
+Portfolio summary PDFs (weekly)
+reports/radar_charts/
+Directory
+92 radar chart PNGs
+output/
+Directory
+Screener exports, ad hoc CSVs, final deliverables archive
+notebooks/
+Directory
+Exploratory Jupyter notebooks (not in production path)
+docs/
+Directory
+Project document PDF, analyst guide, openapi.json
+requirements.txt
+File
+All pip dependencies pinned to minor version
+.env
+File
+DB_PATH, PORT, LOG_LEVEL, SIMULATED_DATA_FLAG. Not committed to git.
+README.md
+File
+Project overview, setup instructions, how to run app and API
+Makefile
+File
+make load, make test, make report, make api, make dashboard

@@ -1,0 +1,138 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 37
+22. Coding Standards & Best Practices
+ Mandatory
+Conventions for All
+Submitted Code
+Area
+Standard
+Tooling / Reference
+Formatting
+Black — line length 88. No manual formatting.
+black src/ tests/ — run pre-commit
+Linting
+ruff — all default rules enabled. Zero linting errors before commit.
+ruff check src/ tests/
+Type Hints
+All function signatures must have type annotations. Return types mandatory.
+mypy (optional in S1; mandatory S4+)
+Docstrings
+One-line docstring for all public functions. No multi-paragraph docstrings.
+Example: def load_pl(path: str) -> pd.DataFrame:  """Load profitandloss Excel. Returns normalised DataFrame."""
+Imports
+stdlib → third-party → local. One blank line between groups. ruff enforces.
+ruff --select I (isort-compatible)
+Naming
+snake_case for functions and variables. PascalCase for classes. UPPER_CASE for module-level constants.
+Python PEP 8
+Configuration
+All thresholds in screener_config.yaml or .env. Zero hardcoded values in analytics/ or api/.
+python-dotenv + PyYAML
+Error Handling
+Wrap external I/O (file reads, URL fetches) in try/except. Log error; do not raise to user.
+logging module — see logging_config.yaml
+Logging
+Use Python logging (not print). Levels: DEBUG for ETL detail; INFO for milestones; WARNING for DQ issues; ERROR for failures.
+import logging; logger = logging.getLogger(__name__)
+Database
+Use context manager (with sqlite3.connect(DB) as conn) for all queries. Parameterised queries only — no f-string SQL.
+conn.execute('SELECT * FROM t WHERE id = ?', (ticker,))
+Testing
+One test file per source module. Test file: tests/etl/test_loader.py mirrors src/etl/loader.py.
+pytest conventions — fixtures in conftest.py
+Git
+Commit message format: [S1] feat: load P&L from Excel — sprint tag + type + description. Max 72 chars.
+No squash commits. Each commit must be a coherent unit.
+23. ETL Edge Cases — Complete Reference
+Source Field
+Raw Value
+normalize_year() Output
+Action
+year
+Mar-23
+2023-03
+Standard format — most common
+year
+Mar 23
+2023-03
+Strip space before parse
+year
+March-2023
+2023-03
+Full month name support
+year
+2023
+2023-03
+Integer year → assume March FY close
+year
+FY23
+2023-03
+FY prefix removal
+year
+Dec-22
+2022-12
+December year-end company (e.g. NESTLEIND)
+year
+Jun-23
+2023-06
+June year-end (some banks)
+year
+2023-03
+2023-03
+Already normalised — pass through
+year
+garbage
+PARSE_ERROR
+Reject row; log raw value to parse_failures.csv
+company_id
+  TCS  
+TCS
+Strip whitespace both sides
+company_id
+tcs
+TCS
+Upper-case
+company_id
+BAJAJ-AUTO
+BAJAJ-AUTO
+Hyphen preserved — valid NSE ticker
+company_id
+M&M
+M&M
+Ampersand preserved — valid NSE ticker
+company_id
+MISSING
+Reject row — no FK match possible
+23.1 CAGR Edge Case Decision Table
+Base Year Value
+End Year Value
+CAGR Result
+Flag
+Display As
+Positive (> 0)
+Positive (> 0)
+Computed normally
+—
+e.g. 18.3%
+Positive (> 0)
+Negative (< 0)
+None
+DECLINE_TO_LOSS
+N/A — turned loss
+Negative (< 0)
+Positive (> 0)
+None
+TURNAROUND
+Turnaround ↑
+Negative (< 0)
+Negative (< 0)
+None
+BOTH_NEGATIVE
+N/A — both loss
+Zero
+Any
+None
+ZERO_BASE
+N/A — base=0

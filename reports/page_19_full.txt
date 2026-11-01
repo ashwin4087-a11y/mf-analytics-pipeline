@@ -1,0 +1,110 @@
+NIFTY 100 FINANCIAL INTELLIGENCE PLATFORM
+PROJECT EXECUTION PLAN  v1.0  ·  CONFIDENTIAL
+DATA ANALYTICS DIVISION  ·  INTERNAL USE ONLY
+Page 19
+9. Module Specifications — Modules 1–4
+Data Foundation,
+Analytics Engine,
+Screener & Peer
+Comparison
+ 
+Module 1: Data Ingestion & ETL
+Reads all 7 core + 5 supplementary Excel files, normalises fields, validates schemas, removes duplicates, and loads into a 10-table SQLite database.
+The foundation for all downstream modules.
+Sprint: Sprint 1 (Days 1–7)
+#
+Feature
+Acceptance Criterion
+Output
+1.1
+Excel file loader with header=1 support
+Loads all 7 core files with correct column headers; handles merged cells
+DataFrames
+1.2
+Ticker normaliser
+company_id.str.strip().str.upper() on all tables; FK integrity passes
+Normalised IDs
+1.3
+Year label standardiser
+Mar-23 → 2023-03 via normalize_year(); Mar / Dec FY handled
+Uniform year strings
+1.4
+Schema validator (16 rules)
+Zero schema failures on reference dataset; failures logged to CSV
+validation_log.csv
+1.5
+Deduplication engine
+No duplicate (company_id, year) pairs in time-series tables
+Clean tables
+1.6
+SQLite loader
+All 10 tables written; rowcounts match source; FK constraints enabled
+nifty100.db
+1.7
+Load audit log
+load_audit.csv: table, rows_in, rows_out, rejected, timestamp, runtime_s
+Audit file
+Output
+Detail
+nifty100.db (SQLite)
+10 tables: companies, profitandloss, balancesheet, cashflow, analysis, documents, prosandcons, sectors, market_cap, stock_prices, financial_ratios, peer_groups
+load_audit.csv
+Per-table load statistics for QA review. Row count, rejection count, runtime.
+validation_failures.csv
+All DQ rule violations with company_id, year, field, issue, severity (CRITICAL/WARNING).
+Module 2: Financial Ratio Engine
+Computes 50+ KPIs for every company-year combination across all 14 available years. Handles all edge cases: division by zero, negative equity,
+debt-free companies, bank/NBFC D/E carve-out, and CAGR sign anomalies.
+Sprint: Sprint 2 (Days 8–14)
+#
+Feature / KPI
+Formula
+Edge Case
+2.1
+Net Profit Margin
+net_profit / sales × 100
+None if sales = 0
+2.2
+Operating Profit Margin
+operating_profit / sales × 100
+Cross-check vs opm_percentage
+2.3
+Return on Equity (ROE)
+net_profit / (equity + reserves) × 100
+None if equity ≤ 0
+2.4
+Return on Capital (ROCE)
+(EBIT) / (equity + reserves + borrowings) × 100
+Exclude NBFC/Banks from D/E flag
+2.5
+Debt-to-Equity
+borrowings / (equity + reserves)
+0 for debt-free; flag >5 for non-financials
+2.6
+Interest Coverage
+(op_profit + other_income) / interest
+None if interest = 0; 999 displayed as 'Debt Free'
+2.7
+Free Cash Flow
+CFO + CFI
+Negative allowed; flag if negative 3yr consecutive
+2.8
+CAGR (Revenue, PAT, EPS)
+((end/start)^(1/n) − 1) × 100
+Turnaround flag if base < 0 and end > 0
+2.9
+Asset Turnover
+sales / total_assets
+None if total_assets = 0
+2.10
+Capital Allocation Class
+Sign pattern of CFO/CFI/CFF
+8 patterns → labels: Reinvest, Return, Distress, etc.
+Output
+Detail
+financial_ratios table (SQLite)
+14 computed KPI columns per company-year; ~1,184 rows minimum
+capital_allocation.csv
+company_id, year, CFO_sign, CFI_sign, CFF_sign, pattern_label
+ratio_edge_cases.log
+Log of every CAGR turnaround, debt-free substitution, or division-by-zero
